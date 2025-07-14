@@ -39,21 +39,23 @@ const FeaturedInSection = () => {
           </p>
         </div>
 
-        <div className="scroll-reveal grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-          {publications.map((pub, index) => (
-            <div 
-              key={pub.name}
-              className="flex flex-col items-center group hover:scale-110 transition-all duration-300"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="w-16 h-16 glass-card rounded-xl flex items-center justify-center mb-3 group-hover:bg-accent/20 transition-all duration-300">
-                <span className="text-xl font-bold text-primary">{pub.logo}</span>
+        <div className="bg-card border border-border rounded-2xl shadow-sm p-8">
+          <div className="scroll-reveal grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+            {publications.map((pub, index) => (
+              <div 
+                key={pub.name}
+                className="flex flex-col items-center group hover:scale-110 transition-all duration-300"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="w-16 h-16 bg-muted rounded-xl flex items-center justify-center mb-3 group-hover:bg-primary/10 transition-all duration-300">
+                  <span className="text-xl font-bold text-primary">{pub.logo}</span>
+                </div>
+                <p className="text-xs text-muted-foreground font-light text-center">
+                  {pub.name}
+                </p>
               </div>
-              <p className="text-xs text-muted-foreground font-light text-center">
-                {pub.name}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

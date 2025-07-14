@@ -42,47 +42,32 @@ const MissionSection = () => {
           </h2>
           
           <div className="bg-card border border-border rounded-2xl shadow-lg p-8 md:p-12">
-            <blockquote className="text-xl md:text-2xl font-light leading-relaxed text-foreground mb-8">
-              "At CARS24, we believe our employees deserve more than just a paycheck. 
-              Our mission is to reward every transaction, every service, and every engagement 
-              our team members make through our platform with exclusive benefits and cashback rewards."
-            </blockquote>
+            <p className="text-xl md:text-2xl font-light leading-relaxed text-foreground mb-8">
+              Rewarding CARS24 employees with exclusive financial benefits
+            </p>
             
-            <div className="flex flex-col md:flex-row items-center justify-center gap-8 text-center">
-              <div className="flex items-center">
-                <Heart className="w-6 h-6 text-primary mr-2" />
-                <span className="text-muted-foreground">Employee First</span>
+            <div className="grid md:grid-cols-3 gap-6 text-left">
+              <div className="flex items-start space-x-3">
+                <Heart className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
+                <div>
+                  <h3 className="font-semibold text-primary mb-1">Employee First</h3>
+                  <p className="text-sm text-muted-foreground">Prioritizing our team's financial wellbeing</p>
+                </div>
               </div>
-              <div className="flex items-center">
-                <Star className="w-6 h-6 text-primary mr-2" />
-                <span className="text-muted-foreground">Premium Benefits</span>
+              <div className="flex items-start space-x-3">
+                <Star className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
+                <div>
+                  <h3 className="font-semibold text-primary mb-1">Premium Benefits</h3>
+                  <p className="text-sm text-muted-foreground">Exclusive access to top-tier financial products</p>
+                </div>
               </div>
-              <div className="flex items-center">
-                <Target className="w-6 h-6 text-primary mr-2" />
-                <span className="text-muted-foreground">Financial Growth</span>
+              <div className="flex items-start space-x-3">
+                <Target className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
+                <div>
+                  <h3 className="font-semibold text-primary mb-1">Financial Growth</h3>
+                  <p className="text-sm text-muted-foreground">Building wealth through smart rewards</p>
+                </div>
               </div>
-            </div>
-          </div>
-
-          {/* Values */}
-          <div className="scroll-reveal mt-16 grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <h3 className="text-xl font-semibold mb-4 text-primary">Transparency</h3>
-              <p className="text-muted-foreground font-light">
-                No hidden fees, clear terms, and honest communication in every interaction.
-              </p>
-            </div>
-            <div className="text-center">
-              <h3 className="text-xl font-semibold mb-4 text-primary">Excellence</h3>
-              <p className="text-muted-foreground font-light">
-                Premium services that exceed expectations and deliver real value.
-              </p>
-            </div>
-            <div className="text-center">
-              <h3 className="text-xl font-semibold mb-4 text-primary">Innovation</h3>
-              <p className="text-muted-foreground font-light">
-                Cutting-edge solutions that simplify financial services for everyone.
-              </p>
             </div>
           </div>
         </div>

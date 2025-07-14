@@ -25,20 +25,20 @@ const HowItWorksSection = () => {
   const steps = [
     {
       icon: ShoppingCart,
-      title: "Choose a Deal & Transact",
-      description: "Browse through exclusive financial products and e-commerce deals. Select the one that best fits your needs and complete the transaction through our secure platform.",
+      title: "Choose & Transact",
+      description: "Browse exclusive deals and complete transactions",
       color: "from-blue-500 to-cyan-500"
     },
     {
       icon: Clock,
-      title: "Wait for Transaction Completion",
-      description: "Our system automatically tracks your transaction status. You'll receive real-time updates and notifications once your transaction is verified and marked complete.",
+      title: "Auto-Tracking",
+      description: "System tracks and verifies your transactions",
       color: "from-purple-500 to-pink-500"
     },
     {
       icon: Gift,
-      title: "Enjoy Your Rewards",
-      description: "Receive instant rewards in the form of Amazon and Flipkart gift vouchers. Use them for shopping, entertainment, or save them for special occasions.",
+      title: "Earn Rewards",
+      description: "Receive instant gift vouchers and cashback",
       color: "from-orange-500 to-red-500"
     }
   ];
@@ -51,7 +51,7 @@ const HowItWorksSection = () => {
             How It Works
           </h2>
           <p className="text-xl text-muted-foreground font-light max-w-2xl mx-auto">
-            Simple, transparent, and rewarding - get started in just three easy steps
+            Three simple steps to start earning rewards
           </p>
         </div>
 
@@ -99,9 +99,9 @@ const HowItWorksSection = () => {
             </p>
             <button 
               className="cars24-button px-8 py-3"
-              onClick={() => document.querySelector('#pricing')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => document.querySelector('#features')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              Explore Plans
+              Explore Features
             </button>
           </div>
         </div>

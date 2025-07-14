@@ -18,10 +18,10 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 10%;
 
-    /* CARS24 Brand Colors */
-    --primary: 25 100% 55%;      /* CARS24 Orange #ff7a00 */
+    /* CARS24 Brand Colors - Sky Blue Theme */
+    --primary: 215 100% 15%;     /* Sky-950 #0c4a6e */
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 25 100% 50%; /* Darker orange for hover */
+    --primary-hover: 215 100% 12%; /* Darker sky-950 for hover */
 
     --secondary: 215 100% 26%;   /* CARS24 Blue #003087 */
     --secondary-foreground: 0 0% 100%;
@@ -37,7 +37,7 @@
 
     --border: 214 13% 88%;       /* Light border */
     --input: 214 13% 88%;
-    --ring: 25 100% 55%;         /* Orange focus ring */
+    --ring: 215 100% 15%;        /* Sky-950 focus ring */
 
     /* Clean Design Elements */
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);

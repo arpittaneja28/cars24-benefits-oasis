@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Star } from 'lucide-react';
+import premiumDashboard from '@/assets/premium-dashboard.jpg';
 
 const HeroSection = () => {
   const heroRef = useRef<HTMLElement>(null);
@@ -44,7 +45,7 @@ const HeroSection = () => {
 
       <div className="relative z-10 text-center max-w-6xl mx-auto">
         {/* Badge */}
-        <div className="scroll-reveal mb-6">
+        <div className="scroll-reveal mb-6 mt-20">
           <div className="inline-flex items-center bg-card border border-border rounded-full px-4 py-2 text-sm text-muted-foreground shadow-sm">
             <Star className="w-4 h-4 mr-2 text-primary fill-current" />
             Exclusive for CARS24 Employees
@@ -103,16 +104,18 @@ const HeroSection = () => {
       {/* Product UI Showcase */}
       <div className="scroll-reveal mt-16 relative max-w-5xl mx-auto">
         <div className="bg-card border border-border rounded-2xl shadow-xl p-8">
-          <div className="aspect-video bg-gradient-to-br from-primary/10 to-secondary/10 rounded-xl flex items-center justify-center">
-            <div className="text-center">
-              <div className="w-20 h-20 bg-primary rounded-xl mx-auto mb-4 flex items-center justify-center">
-                <span className="text-2xl font-bold text-white">💳</span>
-              </div>
-              <h3 className="text-2xl font-semibold mb-2 text-foreground">Premium Dashboard</h3>
-              <p className="text-muted-foreground">
-                Manage all your benefits, track rewards, and access exclusive deals
-              </p>
-            </div>
+          <div className="aspect-video bg-gradient-to-br from-primary/10 to-secondary/10 rounded-xl overflow-hidden">
+            <img 
+              src={premiumDashboard} 
+              alt="Premium Financial Dashboard Interface"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="text-center mt-6">
+            <h3 className="text-2xl font-semibold mb-3 text-foreground">Premium Financial Hub</h3>
+            <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+              Track benefits • Monitor rewards • Access exclusive deals
+            </p>
           </div>
         </div>
       </div>

@@ -26,49 +26,49 @@ const FeaturesSection = () => {
     {
       icon: CreditCard,
       title: "Premium Credit Cards",
-      description: "Exclusive credit cards with up to 5% cashback, zero annual fees, and premium benefits designed for CARS24 employees.",
+      description: "5% cashback, zero fees, instant approval",
       gradient: "from-blue-500 to-cyan-500"
     },
     {
       icon: TrendingUp,
       title: "Low-Interest Loans",
-      description: "Personal and home loans at market-beating interest rates, with quick approval and minimal documentation required.",
+      description: "Market-beating rates, quick approval",
       gradient: "from-green-500 to-emerald-500"
     },
     {
       icon: Gift,
       title: "Instant Cashback",
-      description: "Earn up to 10% cashback on e-commerce purchases, dining, travel, and entertainment through our partner network.",
+      description: "Up to 10% cashback on all purchases",
       gradient: "from-purple-500 to-pink-500"
     },
     {
       icon: Shield,
       title: "Secure Platform",
-      description: "Bank-grade security with end-to-end encryption, ensuring your financial data and transactions are always protected.",
+      description: "Bank-grade security, full encryption",
       gradient: "from-orange-500 to-red-500"
     },
     {
       icon: Zap,
       title: "Instant Approvals",
-      description: "Get approved for loans and credit cards in minutes, not days. Our AI-powered system ensures quick decisions.",
+      description: "AI-powered, decisions in minutes",
       gradient: "from-yellow-500 to-orange-500"
     },
     {
       icon: DollarSign,
       title: "Investment Advisory",
-      description: "Access to premium investment options with expert advisory services to help grow your wealth systematically.",
+      description: "Expert guidance, premium options",
       gradient: "from-indigo-500 to-purple-500"
     },
     {
       icon: Lock,
       title: "Data Privacy",
-      description: "Your personal and financial information is never shared with third parties. Complete privacy guaranteed.",
+      description: "Complete privacy, no third-party sharing",
       gradient: "from-teal-500 to-green-500"
     },
     {
       icon: Users,
       title: "24/7 Support",
-      description: "Dedicated customer support team available round the clock to assist with all your queries and concerns.",
+      description: "Dedicated team, round-the-clock assistance",
       gradient: "from-pink-500 to-rose-500"
     }
   ];
@@ -81,7 +81,7 @@ const FeaturesSection = () => {
             Exclusive Features
           </h2>
           <p className="text-xl text-muted-foreground font-light max-w-2xl mx-auto">
-            Comprehensive financial solutions tailored specifically for CARS24 employees
+            Premium financial solutions for CARS24 employees
           </p>
         </div>
 
@@ -110,24 +110,22 @@ const FeaturesSection = () => {
 
         {/* Stats Section */}
         <div className="scroll-reveal mt-20">
-          <div className="bg-card border border-border rounded-2xl shadow-lg p-8">
-            <div className="grid md:grid-cols-4 gap-8 text-center">
-              <div>
-                <div className="text-3xl font-bold text-primary mb-2">1000+</div>
-                <div className="text-muted-foreground text-sm">Active Users</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-primary mb-2">₹50L+</div>
-                <div className="text-muted-foreground text-sm">Loans Disbursed</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-primary mb-2">₹2L+</div>
-                <div className="text-muted-foreground text-sm">Cashback Earned</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-primary mb-2">4.9★</div>
-                <div className="text-muted-foreground text-sm">User Rating</div>
-              </div>
+          <div className="grid md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div className="text-3xl font-bold text-muted-foreground/70 mb-2">1000+</div>
+              <div className="text-muted-foreground/60 text-sm">Active Users</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-muted-foreground/70 mb-2">₹50L+</div>
+              <div className="text-muted-foreground/60 text-sm">Loans Disbursed</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-muted-foreground/70 mb-2">₹2L+</div>
+              <div className="text-muted-foreground/60 text-sm">Cashback Earned</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-muted-foreground/70 mb-2">4.9★</div>
+              <div className="text-muted-foreground/60 text-sm">User Rating</div>
             </div>
           </div>
         </div>
