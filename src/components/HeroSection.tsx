@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Star } from 'lucide-react';
@@ -73,7 +74,7 @@ const HeroSection = () => {
           <Button 
             onClick={handleGetStarted}
             size="lg"
-            className="px-8 py-4 text-lg group"
+            className="px-8 py-4 text-lg group bg-blue-400 hover:bg-blue-500 text-white"
           >
             Get Started Today
             <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
