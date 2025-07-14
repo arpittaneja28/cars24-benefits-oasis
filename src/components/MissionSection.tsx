@@ -32,7 +32,7 @@ const MissionSection = () => {
       <div className="container mx-auto max-w-4xl relative z-10">
         <div className="scroll-reveal text-center">
           {/* Icon */}
-          <div className="w-20 h-20 mx-auto mb-8 bg-gradient-luxury rounded-2xl flex items-center justify-center">
+          <div className="w-20 h-20 mx-auto mb-8 bg-primary rounded-2xl flex items-center justify-center">
             <Target className="w-10 h-10 text-white" />
           </div>
 
@@ -41,7 +41,7 @@ const MissionSection = () => {
             Our Mission
           </h2>
           
-          <div className="glass-card p-8 md:p-12 rounded-3xl">
+          <div className="bg-card border border-border rounded-2xl shadow-lg p-8 md:p-12">
             <blockquote className="text-xl md:text-2xl font-light leading-relaxed text-foreground mb-8">
               "At CARS24, we believe our employees deserve more than just a paycheck. 
               Our mission is to reward every transaction, every service, and every engagement 

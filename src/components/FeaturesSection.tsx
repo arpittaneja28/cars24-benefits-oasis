@@ -89,31 +89,28 @@ const FeaturesSection = () => {
           {features.map((feature, index) => (
             <div 
               key={index}
-              className="scroll-reveal feature-card group"
+              className="scroll-reveal cars24-card p-6 group relative"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Icon */}
-              <div className={`w-16 h-16 mb-4 rounded-xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                <feature.icon className="w-8 h-8 text-white" />
+              <div className="service-icon group-hover:scale-110 transition-transform duration-300">
+                <feature.icon className="w-6 h-6" />
               </div>
 
               {/* Content */}
-              <h3 className="text-lg font-semibold mb-3 tracking-tight">
+              <h3 className="text-lg font-semibold mb-3 text-foreground">
                 {feature.title}
               </h3>
-              <p className="text-muted-foreground font-light text-sm leading-relaxed">
+              <p className="text-muted-foreground text-sm leading-relaxed">
                 {feature.description}
               </p>
-
-              {/* Hover Effect */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/10 to-primary-glow/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
             </div>
           ))}
         </div>
 
         {/* Stats Section */}
         <div className="scroll-reveal mt-20">
-          <div className="glass-card p-8 rounded-3xl">
+          <div className="bg-card border border-border rounded-2xl shadow-lg p-8">
             <div className="grid md:grid-cols-4 gap-8 text-center">
               <div>
                 <div className="text-3xl font-bold text-primary mb-2">1000+</div>

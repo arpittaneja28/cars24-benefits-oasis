@@ -67,22 +67,22 @@ const HowItWorksSection = () => {
                 <div className="hidden md:block absolute top-16 left-full w-full h-0.5 bg-gradient-to-r from-primary/50 to-transparent z-0 transform translate-x-4"></div>
               )}
               
-              <div className="feature-card relative z-10 text-center">
+              <div className="cars24-card relative z-10 text-center p-6">
                 {/* Step Number */}
-                <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-luxury rounded-full flex items-center justify-center text-sm font-bold text-white">
+                <div className="absolute -top-4 -right-4 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-sm font-bold text-white">
                   {index + 1}
                 </div>
 
                 {/* Icon */}
-                <div className={`w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br ${step.color} flex items-center justify-center`}>
-                  <step.icon className="w-10 h-10 text-white" />
+                <div className="service-icon w-20 h-20 mx-auto mb-6">
+                  <step.icon className="w-10 h-10" />
                 </div>
 
                 {/* Content */}
-                <h3 className="text-xl font-semibold mb-4 tracking-tight">
+                <h3 className="text-xl font-semibold mb-4 text-foreground">
                   {step.title}
                 </h3>
-                <p className="text-muted-foreground font-light leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed">
                   {step.description}
                 </p>
               </div>
@@ -92,13 +92,13 @@ const HowItWorksSection = () => {
 
         {/* Bottom CTA */}
         <div className="scroll-reveal text-center mt-16">
-          <div className="glass-card p-8 rounded-2xl max-w-2xl mx-auto">
-            <h3 className="text-2xl font-semibold mb-4">Ready to Get Started?</h3>
+          <div className="bg-card border border-border rounded-2xl shadow-lg p-8 max-w-2xl mx-auto">
+            <h3 className="text-2xl font-semibold mb-4 text-foreground">Ready to Get Started?</h3>
             <p className="text-muted-foreground mb-6">
               Join thousands of CARS24 employees already enjoying exclusive benefits
             </p>
             <button 
-              className="neuro-button px-8 py-3"
+              className="cars24-button px-8 py-3"
               onClick={() => document.querySelector('#pricing')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Explore Plans

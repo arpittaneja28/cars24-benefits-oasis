@@ -103,21 +103,21 @@ const PricingSection = () => {
               {/* Popular Badge */}
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
-                  <div className="bg-gradient-luxury px-4 py-2 rounded-full text-sm font-medium text-white">
+                  <div className="bg-primary px-4 py-2 rounded-full text-sm font-medium text-white">
                     Recommended
                   </div>
                 </div>
               )}
 
-              <div className={`glass-card p-8 h-full relative ${
-                plan.popular ? 'border-primary/50' : ''
+              <div className={`cars24-card p-8 h-full relative ${
+                plan.popular ? 'border-primary shadow-xl' : ''
               }`}>
                 {/* Plan Header */}
                 <div className="text-center mb-8">
-                  <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center ${
+                  <div className={`w-16 h-16 mx-auto mb-4 rounded-xl flex items-center justify-center ${
                     plan.popular 
-                      ? 'bg-gradient-luxury' 
-                      : 'bg-gradient-to-br from-muted to-accent'
+                      ? 'bg-primary' 
+                      : 'bg-secondary'
                   }`}>
                     <plan.icon className="w-8 h-8 text-white" />
                   </div>
@@ -145,9 +145,10 @@ const PricingSection = () => {
                 <Button 
                   className={`w-full ${
                     plan.popular 
-                      ? 'neuro-button' 
-                      : 'glass-card border-glass-border hover:bg-accent/20'
+                      ? '' 
+                      : 'variant-outline'
                   }`}
+                  variant={plan.popular ? 'default' : 'outline'}
                 >
                   {plan.buttonText}
                 </Button>

@@ -98,7 +98,7 @@ const TestimonialsSection = () => {
                   <div className="testimonial-card max-w-4xl mx-auto">
                     <div className="flex flex-col md:flex-row items-center gap-8">
                       <div className="flex-shrink-0">
-                        <div className="w-24 h-24 bg-gradient-luxury rounded-full flex items-center justify-center text-2xl font-bold text-white mb-4">
+                        <div className="w-24 h-24 bg-primary rounded-full flex items-center justify-center text-2xl font-bold text-white mb-4">
                           {testimonial.image}
                         </div>
                         <div className="text-center">
@@ -107,7 +107,7 @@ const TestimonialsSection = () => {
                               <Star key={i} className="w-4 h-4 text-primary fill-current" />
                             ))}
                           </div>
-                          <div className="glass-card px-3 py-1 rounded-full">
+                          <div className="bg-card border border-border px-3 py-1 rounded-full">
                             <span className="text-sm font-medium text-primary">
                               {testimonial.result}
                             </span>
@@ -137,7 +137,7 @@ const TestimonialsSection = () => {
               variant="outline"
               size="icon"
               onClick={prevTestimonial}
-              className="glass-card border-glass-border w-12 h-12 rounded-full"
+              className="w-12 h-12 rounded-full"
             >
               <ChevronLeft className="w-5 h-5" />
             </Button>
@@ -158,7 +158,7 @@ const TestimonialsSection = () => {
               variant="outline"
               size="icon"
               onClick={nextTestimonial}
-              className="glass-card border-glass-border w-12 h-12 rounded-full"
+              className="w-12 h-12 rounded-full"
             >
               <ChevronRight className="w-5 h-5" />
             </Button>
