@@ -8,9 +8,9 @@
 
 @layer base {
   :root {
-    /* Luxury Glassmorphic Theme */
-    --background: 220 25% 5%;     /* Deep dark navy #0a0f1a */
-    --foreground: 0 0% 95%;       /* Light text #f2f2f2 */
+    /* Luxury Glassmorphic Theme - Light Background */
+    --background: 0 0% 100%;      /* Pure white background */
+    --foreground: 222.2 84% 4.9%; /* Dark text */
 
     --card: 220 20% 10%;          /* Glass card background */
     --card-foreground: 0 0% 95%;
