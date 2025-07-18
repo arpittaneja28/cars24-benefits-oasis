@@ -4,7 +4,7 @@ import HeroSection from '@/components/HeroSection';
 import FeaturesSection from '@/components/FeaturesSection';
 import ProductShowcase from '@/components/ProductShowcase';
 import ComingSoonSection from '@/components/ComingSoonSection';
-import CashbackCalculator from '@/components/CashbackCalculator';
+
 import TestimonialsSection from '@/components/TestimonialsSection';
 import HowItWorksSection from '@/components/HowItWorksSection';
 import MissionSection from '@/components/MissionSection';
@@ -20,7 +20,7 @@ const Index = () => {
       <FeaturesSection />
       <ProductShowcase />
       <ComingSoonSection />
-      <CashbackCalculator />
+      
       <TestimonialsSection />
       <HowItWorksSection />
       <MissionSection />
