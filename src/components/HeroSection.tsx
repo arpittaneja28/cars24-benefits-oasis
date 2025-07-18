@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Star } from 'lucide-react';
-import premiumDashboard from '@/assets/premium-dashboard.jpg';
 
 const HeroSection = () => {
   const heroRef = useRef<HTMLElement>(null);
@@ -101,24 +100,6 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Product UI Showcase */}
-      <div className="scroll-reveal mt-16 relative max-w-5xl mx-auto">
-        <div className="bg-card border border-border rounded-2xl shadow-xl p-8">
-          <div className="aspect-video bg-gradient-to-br from-primary/10 to-secondary/10 rounded-xl overflow-hidden">
-            <img 
-              src={premiumDashboard} 
-              alt="Premium Financial Dashboard Interface"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="text-center mt-6">
-            <h3 className="text-2xl font-semibold mb-3 text-foreground">Premium Financial Hub</h3>
-            <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-              Track benefits • Monitor rewards • Access exclusive deals
-            </p>
-          </div>
-        </div>
-      </div>
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
