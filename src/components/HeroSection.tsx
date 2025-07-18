@@ -35,7 +35,7 @@ const HeroSection = () => {
     <section 
       id="hero" 
       ref={heroRef}
-      className="min-h-screen flex flex-col items-center justify-center relative px-6 bg-background pt-16"
+      className="min-h-screen flex flex-col items-center justify-center relative px-6 bg-background pt-8"
     >
       {/* Clean Background Pattern */}
       <div className="absolute inset-0 opacity-5">
