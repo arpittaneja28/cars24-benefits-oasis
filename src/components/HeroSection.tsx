@@ -37,10 +37,53 @@ const HeroSection = () => {
       ref={heroRef}
       className="min-h-screen flex flex-col items-center justify-center relative px-6 bg-background pt-8"
     >
-      {/* Clean Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-20 w-72 h-72 bg-primary rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-20 w-72 h-72 bg-secondary rounded-full blur-3xl"></div>
+      {/* Animated Vouchers and Cash Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Voucher Icons */}
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={`voucher-${i}`}
+            className={`absolute opacity-10 animate-pulse`}
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${i * 0.5}s`,
+              animationDuration: `${3 + Math.random() * 2}s`,
+            }}
+          >
+            <svg width="60" height="40" viewBox="0 0 60 40" className="text-primary fill-current">
+              <rect x="0" y="0" width="60" height="40" rx="8" className="stroke-current stroke-2 fill-none"/>
+              <circle cx="15" cy="20" r="3" className="fill-current"/>
+              <circle cx="45" cy="20" r="3" className="fill-current"/>
+              <text x="30" y="15" className="text-xs fill-current text-center" textAnchor="middle">₹</text>
+              <text x="30" y="28" className="text-xs fill-current text-center" textAnchor="middle">CASH</text>
+            </svg>
+          </div>
+        ))}
+        
+        {/* Cash Note Icons */}
+        {[...Array(6)].map((_, i) => (
+          <div
+            key={`cash-${i}`}
+            className={`absolute opacity-15 animate-bounce`}
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${i * 0.7}s`,
+              animationDuration: `${2 + Math.random() * 1.5}s`,
+            }}
+          >
+            <svg width="50" height="30" viewBox="0 0 50 30" className="text-secondary fill-current">
+              <rect x="0" y="0" width="50" height="30" rx="4" className="fill-current opacity-20"/>
+              <circle cx="25" cy="15" r="8" className="stroke-current stroke-2 fill-none"/>
+              <text x="25" y="18" className="text-sm fill-current" textAnchor="middle">₹</text>
+            </svg>
+          </div>
+        ))}
+
+        {/* Gradient Overlay for Fade Effect */}
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-background/30 via-transparent to-background/30"></div>
       </div>
 
       <div className="relative z-10 text-center max-w-6xl mx-auto">
