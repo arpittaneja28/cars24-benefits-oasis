@@ -43,7 +43,7 @@ const CashbackCalculator = () => {
   };
 
   return (
-    <section ref={sectionRef} className="py-20 px-6 bg-gradient-to-b from-muted/20 to-background">
+    <section ref={sectionRef} className="py-16 px-6 bg-gradient-to-b from-muted/20 to-background">
       <div className="container mx-auto max-w-4xl">
         <div className="scroll-reveal text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tighter">

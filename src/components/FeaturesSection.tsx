@@ -44,7 +44,7 @@ const FeaturesSection = () => {
   ];
 
   return (
-    <section id="features" ref={sectionRef} className="py-20 px-6">
+    <section id="features" ref={sectionRef} className="py-16 px-6">
       <div className="container mx-auto max-w-6xl">
         <div className="scroll-reveal text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tighter">

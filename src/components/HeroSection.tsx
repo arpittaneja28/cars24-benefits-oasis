@@ -35,7 +35,7 @@ const HeroSection = () => {
     <section 
       id="hero" 
       ref={heroRef}
-      className="min-h-screen flex flex-col items-center justify-center relative px-6 bg-background"
+      className="min-h-screen flex flex-col items-center justify-center relative px-6 bg-background pt-16"
     >
       {/* Clean Background Pattern */}
       <div className="absolute inset-0 opacity-5">
@@ -45,7 +45,7 @@ const HeroSection = () => {
 
       <div className="relative z-10 text-center max-w-6xl mx-auto">
         {/* Badge */}
-        <div className="scroll-reveal mb-6 mt-20">
+        <div className="scroll-reveal mb-6 mt-8">
           <div className="inline-flex items-center bg-card border border-border rounded-full px-4 py-2 text-sm text-muted-foreground shadow-sm">
             <Star className="w-4 h-4 mr-2 text-primary fill-current" />
             Exclusive for CARS24 Employees
@@ -59,7 +59,7 @@ const HeroSection = () => {
           </span>
           <br />
           <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Financial Benefits
+            Cashback Benefits
           </span>
         </h1>
 

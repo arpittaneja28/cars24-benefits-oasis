@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { GraduationCap, Home, Car, Shield } from 'lucide-react';
+import { Slider } from '@/components/ui/slider';
 
 const ComingSoonSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -27,37 +28,83 @@ const ComingSoonSection = () => {
       icon: GraduationCap,
       title: "Education Loan",
       amount: "Up to ₹50L loan",
-      voucher: "₹75K Amazon voucher for your new laptop"
+      voucher: "₹75K Amazon voucher for your new laptop",
+      maxAmount: 5000000,
+      cashbackRate: 0.0075
     },
     {
       icon: Home,
       title: "Home Loan", 
       amount: "₹1Cr loan",
-      voucher: "₹1L voucher for your home's new interiors"
+      voucher: "₹1L voucher for your home's new interiors",
+      maxAmount: 10000000,
+      cashbackRate: 0.005
     },
     {
       icon: Car,
       title: "Auto Loan",
       amount: "₹10L loan",
-      voucher: "₹15K Amazon voucher for car essentials"
+      voucher: "₹15K Amazon voucher for car essentials",
+      maxAmount: 1000000,
+      cashbackRate: 0.006
     },
     {
       icon: Shield,
       title: "Insurance",
       amount: "Lifetime insurance",
-      voucher: "₹20K voucher to boost your health essentials"
+      voucher: "₹20K voucher to boost your health essentials",
+      maxAmount: 100000,
+      cashbackRate: 0.002
     }
   ];
 
+  const [calculatorStates, setCalculatorStates] = useState(
+    comingFeatures.map(feature => ({
+      amount: [feature.maxAmount * 0.2],
+      cashback: Math.floor(feature.maxAmount * 0.2 * feature.cashbackRate)
+    }))
+  );
+
+  const formatCurrency = (value: number) => {
+    if (value >= 10000000) {
+      return `₹${(value / 10000000).toFixed(1)}Cr`;
+    } else if (value >= 100000) {
+      return `₹${(value / 100000).toFixed(1)}L`;
+    } else if (value >= 1000) {
+      return `₹${(value / 1000).toFixed(0)}K`;
+    }
+    return `₹${value.toLocaleString()}`;
+  };
+
+  const updateCalculator = (index: number, newAmount: number[]) => {
+    const newStates = [...calculatorStates];
+    newStates[index] = {
+      amount: newAmount,
+      cashback: Math.floor(newAmount[0] * comingFeatures[index].cashbackRate)
+    };
+    setCalculatorStates(newStates);
+  };
+
   return (
-    <section ref={sectionRef} className="py-20 px-6 bg-gradient-to-b from-background to-muted/20">
+    <section ref={sectionRef} className="py-16 px-6 bg-gradient-to-b from-background to-muted/20">
       <div className="container mx-auto max-w-6xl">
-        <div className="scroll-reveal text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tighter">
+        {/* Coming Soon Badge */}
+        <div className="scroll-reveal text-center mb-8">
+          <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-medium">
+            <span className="relative flex h-3 w-3 mr-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+            </span>
+            Coming Soon
+          </div>
+        </div>
+
+        <div className="scroll-reveal text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tighter">
             Upcoming Features to Maximize Your Benefits
           </h2>
-          <p className="text-xl text-muted-foreground font-light max-w-2xl mx-auto">
-            Revolutionary financial products launching soon
+          <p className="text-lg text-muted-foreground font-light max-w-2xl mx-auto">
+            Revolutionary financial products launching soon with built-in cashback calculators
           </p>
         </div>
 
@@ -91,25 +138,43 @@ const ComingSoonSection = () => {
                   </p>
                   
                   {/* Voucher Details */}
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                     {feature.voucher}
                   </p>
+
+                  {/* Cashback Calculator */}
+                  <div className="mt-4 p-4 rounded-xl bg-background/50 border border-border/50">
+                    <div className="text-center mb-3">
+                      <div className="text-lg font-semibold text-foreground">
+                        {formatCurrency(calculatorStates[index].amount[0])}
+                      </div>
+                      <div className="text-sm text-muted-foreground mb-3">Loan Amount</div>
+                      
+                      <Slider
+                        value={calculatorStates[index].amount}
+                        onValueChange={(value) => updateCalculator(index, value)}
+                        max={feature.maxAmount}
+                        min={feature.maxAmount * 0.1}
+                        step={feature.maxAmount * 0.01}
+                        className="w-full mb-3"
+                      />
+                      
+                      <div className="text-center">
+                        <div className="text-lg font-bold text-green-500">
+                          {formatCurrency(calculatorStates[index].cashback)}
+                        </div>
+                        <div className="text-xs text-muted-foreground">
+                          Cashback ({(feature.cashbackRate * 100).toFixed(2)}%)
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Coming Soon Badge */}
-        <div className="scroll-reveal text-center mt-12">
-          <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-medium">
-            <span className="relative flex h-3 w-3 mr-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
-            </span>
-            Coming Soon
-          </div>
-        </div>
       </div>
     </section>
   );
