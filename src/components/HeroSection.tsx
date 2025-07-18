@@ -35,7 +35,7 @@ const HeroSection = () => {
     <section 
       id="hero" 
       ref={heroRef}
-      className="h-[50vh] md:h-[60vh] lg:h-[70vh] flex flex-col items-center justify-center relative px-6 bg-background pt-20"
+      className="min-h-[100vh] sm:h-[60vh] md:h-[60vh] lg:h-[70vh] flex flex-col items-center justify-center relative px-4 sm:px-6 bg-background pt-16 sm:pt-20"
     >
       {/* Enhanced Animated Background with Financial Elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -168,8 +168,8 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Main Heading - Reduced size */}
-        <h1 className="scroll-reveal text-3xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight">
+        {/* Main Heading - Mobile optimized */}
+        <h1 className="scroll-reveal text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 tracking-tight leading-tight">
           <span className="text-foreground">
             Unlock Premium
           </span>
@@ -180,29 +180,29 @@ const HeroSection = () => {
         </h1>
 
         {/* Improved Subtitle with better copy and contrast */}
-        <div className="scroll-reveal mb-6">
+        <div className="scroll-reveal mb-4 sm:mb-6">
           <div className="relative">
             <div className="absolute inset-0 bg-card/60 backdrop-blur-sm rounded-lg"></div>
-            <p className="relative text-lg md:text-xl text-foreground/90 max-w-3xl mx-auto leading-relaxed px-4 py-2 font-medium">
+            <p className="relative text-sm sm:text-lg md:text-xl text-foreground/90 max-w-3xl mx-auto leading-relaxed px-3 sm:px-4 py-2 font-medium">
               Get cashback and exclusive discounts on services you use daily. Our employees earn money back on everything from food delivery to shopping, travel, and more.
             </p>
           </div>
         </div>
 
-        {/* CTA Buttons with reduced spacing */}
-        <div className="scroll-reveal flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+        {/* CTA Buttons - Mobile optimized */}
+        <div className="scroll-reveal flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-6 sm:mb-8 w-full px-2">
           <Button 
             onClick={handleGetStarted}
             size="lg"
-            className="px-8 py-4 text-lg group shadow-lg"
+            className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg group shadow-lg min-h-[48px]"
           >
             Get Started Today
-            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="ml-2 w-4 sm:w-5 h-4 sm:h-5 group-hover:translate-x-1 transition-transform" />
           </Button>
           <Button 
             variant="outline" 
             size="lg"
-            className="px-8 py-4 text-lg bg-card/80 backdrop-blur-sm"
+            className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg bg-card/80 backdrop-blur-sm min-h-[48px]"
             onClick={() => document.querySelector('#how-it-works')?.scrollIntoView({ behavior: 'smooth' })}
           >
             Learn More
