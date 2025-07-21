@@ -2,9 +2,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import { CreditCard, ShoppingBag, User, GraduationCap, Home, Car, Shield as ShieldIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
+import { useNavigate } from 'react-router-dom';
 
 const FeaturesSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -33,7 +35,8 @@ const FeaturesSection = () => {
         "Exclusive rewards",
         "Compare offers",
         "Zero impact on credit score"
-      ]
+      ],
+      route: "/personal-loans"
     },
     {
       icon: CreditCard,
@@ -43,7 +46,8 @@ const FeaturesSection = () => {
         "Cards tailored to your spend",
         "Compare cards",
         "Instant approval process"
-      ]
+      ],
+      route: "/credit-cards"
     },
     {
       icon: ShoppingBag,
@@ -53,7 +57,8 @@ const FeaturesSection = () => {
         "Up to 80% cashback",
         "Exclusive flash deals",
         "Premium partner offers"
-      ]
+      ],
+      route: "/online-shopping"
     }
   ];
 
@@ -134,8 +139,8 @@ const FeaturesSection = () => {
               className="scroll-reveal group relative"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              {/* Glassmorphic Card */}
-              <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg border border-white/20 p-8 h-full transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/10">
+              {/* Glassmorphic Card - No borders as per requirements */}
+              <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg p-8 h-full transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/10">
                 {/* Background Gradient */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
@@ -162,6 +167,7 @@ const FeaturesSection = () => {
 
                   {/* Neumorphism CTA Button */}
                   <Button 
+                    onClick={() => navigate(feature.route)}
                     className="w-full bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl hover:shadow-primary/25 transition-all duration-300 hover:scale-105"
                   >
                     Learn More
@@ -190,8 +196,8 @@ const FeaturesSection = () => {
                 className="scroll-reveal group relative"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                {/* Glassmorphic Card */}
-                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg border border-white/20 p-6 h-full transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                {/* Glassmorphic Card - No borders as per requirements */}
+                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg p-6 h-full transition-all duration-300 hover:scale-105 hover:shadow-xl">
                   {/* Background Gradient */}
                   <div className="absolute inset-0 bg-gradient-to-br from-muted/5 to-muted/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   
