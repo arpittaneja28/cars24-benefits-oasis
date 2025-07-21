@@ -69,7 +69,11 @@ const FeaturesSection = () => {
   const [insurance, setInsurance] = useState([20]);
 
   const calculateCashback = (amount: number, rate: number) => {
-    return (amount * rate / 100).toFixed(1);
+    // Amount is in Lakhs, so multiply by 100000 to get actual amount, then apply rate percentage
+    const actualAmount = amount * 100000;
+    const cashback = (actualAmount * rate / 100);
+    // Return in thousands (K) format
+    return (cashback / 1000).toFixed(1);
   };
 
   const comingSoonFeatures = [
