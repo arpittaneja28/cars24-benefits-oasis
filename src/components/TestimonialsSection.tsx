@@ -8,44 +8,28 @@ const TestimonialsSection = () => {
 
   const testimonials = [
     {
-      name: "Rahul Sharma",
+      name: "Rajesh Kumar",
       role: "Senior Sales Executive",
-      image: "RS",
+      image: "RK",
       rating: 5,
-      content: "Got a personal loan at 8.5% interest rate - 3% lower than market rates! Saved ₹50,000 in interest over 3 years.",
-      result: "Saved ₹50,000"
+      content: "I took a personal loan of ₹5L and received ₹8,750 in Amazon vouchers. The process was seamless, and the cashback was a great perk!",
+      result: "₹8,750 Cashback"
     },
     {
-      name: "Priya Patel",
+      name: "Priya Sharma",
       role: "Marketing Manager", 
-      image: "PP",
+      image: "PS",
       rating: 5,
-      content: "The credit card offers 5% cashback on all purchases. Already earned ₹15,000 cashback in 6 months!",
-      result: "Earned ₹15,000"
+      content: "I got my CARS24 credit card and earned ₹1,500 cashback on my first purchase. It was amazing to see such instant rewards!",
+      result: "₹1,500 Cashback"
     },
     {
-      name: "Amit Kumar",
-      role: "Technical Lead",
-      image: "AK", 
-      rating: 5,
-      content: "Home loan approval in just 48 hours with minimal documentation. The process was incredibly smooth.",
-      result: "Approved in 48hrs"
-    },
-    {
-      name: "Sneha Reddy",
+      name: "Anita Singh",
       role: "HR Specialist",
-      image: "SR",
+      image: "AS",
       rating: 5,
-      content: "E-commerce purchases give me 10% cashback. Shopping for family needs has become so rewarding!",
-      result: "10% Cashback"
-    },
-    {
-      name: "Vikram Singh",
-      role: "Operations Head",
-      image: "VS",
-      rating: 5,
-      content: "Investment platform helped me grow my savings by 18% annually with expert guidance and low fees.",
-      result: "18% Returns"
+      content: "I shopped at Myntra through the portal and got ₹800 cashback. It was an easy way to save while shopping for new clothes.",
+      result: "₹800 Cashback"
     }
   ];
 

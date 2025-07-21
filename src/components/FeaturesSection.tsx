@@ -1,5 +1,7 @@
-import React, { useEffect, useRef } from 'react';
-import { CreditCard, TrendingUp, Shield, Zap, Gift, DollarSign, Lock, Users } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { CreditCard, ShoppingBag, User, GraduationCap, Home, Car, Shield as ShieldIcon } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Slider } from '@/components/ui/slider';
 
 const FeaturesSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -22,60 +24,100 @@ const FeaturesSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  const features = [
+  const exclusiveFeatures = [
+    {
+      icon: User,
+      title: "Personal Loans",
+      features: [
+        "Up to 2% Cashback",
+        "Exclusive rewards",
+        "Compare offers",
+        "Zero impact on credit score"
+      ]
+    },
     {
       icon: CreditCard,
-      title: "Premium Credit Cards",
-      description: "5% cashback, zero fees, instant approval",
-      gradient: "from-blue-500 to-cyan-500"
+      title: "Credit Cards",
+      features: [
+        "Flat cashback up to ₹3,000",
+        "Cards tailored to your spend",
+        "Compare cards",
+        "Instant approval process"
+      ]
     },
     {
-      icon: TrendingUp,
-      title: "Low-Interest Loans",
-      description: "Market-beating rates, quick approval",
-      gradient: "from-green-500 to-emerald-500"
+      icon: ShoppingBag,
+      title: "Online Shopping",
+      features: [
+        "3,000+ retailers",
+        "Up to 80% cashback",
+        "Exclusive flash deals",
+        "Premium partner offers"
+      ]
+    }
+  ];
+
+  // Coming Soon Section State
+  const [educationLoan, setEducationLoan] = useState([10]);
+  const [homeLoan, setHomeLoan] = useState([20]);
+  const [autoLoan, setAutoLoan] = useState([2]);
+  const [insurance, setInsurance] = useState([20]);
+
+  const calculateCashback = (amount: number, rate: number) => {
+    return (amount * rate / 100).toFixed(1);
+  };
+
+  const comingSoonFeatures = [
+    {
+      icon: GraduationCap,
+      title: "Education Loan",
+      description: "Up to ₹50L loan",
+      voucher: "₹40K Amazon voucher for your new laptop",
+      defaultAmount: educationLoan[0],
+      rate: 0.75,
+      unit: "L",
+      setState: setEducationLoan,
+      value: educationLoan
     },
     {
-      icon: Gift,
-      title: "Instant Cashback",
-      description: "Up to 10% cashback on all purchases",
-      gradient: "from-purple-500 to-pink-500"
+      icon: Home,
+      title: "Home Loan",
+      description: "₹1Cr loan",
+      voucher: "₹50K voucher for your home's new interiors",
+      defaultAmount: homeLoan[0],
+      rate: 0.50,
+      unit: "L",
+      setState: setHomeLoan,
+      value: homeLoan
     },
     {
-      icon: Shield,
-      title: "Secure Platform",
-      description: "Bank-grade security, full encryption",
-      gradient: "from-orange-500 to-red-500"
+      icon: Car,
+      title: "Auto Loan",
+      description: "₹10L loan",
+      voucher: "₹5K Amazon voucher for car essentials",
+      defaultAmount: autoLoan[0],
+      rate: 0.60,
+      unit: "L",
+      setState: setAutoLoan,
+      value: autoLoan
     },
     {
-      icon: Zap,
-      title: "Instant Approvals",
-      description: "AI-powered, decisions in minutes",
-      gradient: "from-yellow-500 to-orange-500"
-    },
-    {
-      icon: DollarSign,
-      title: "Investment Advisory",
-      description: "Expert guidance, premium options",
-      gradient: "from-indigo-500 to-purple-500"
-    },
-    {
-      icon: Lock,
-      title: "Data Privacy",
-      description: "Complete privacy, no third-party sharing",
-      gradient: "from-teal-500 to-green-500"
-    },
-    {
-      icon: Users,
-      title: "24/7 Support",
-      description: "Dedicated team, round-the-clock assistance",
-      gradient: "from-pink-500 to-rose-500"
+      icon: ShieldIcon,
+      title: "Insurance",
+      description: "Lifetime insurance",
+      voucher: "₹4K voucher to boost your health essentials",
+      defaultAmount: insurance[0],
+      rate: 0.20,
+      unit: "L",
+      setState: setInsurance,
+      value: insurance
     }
   ];
 
   return (
     <section id="features" ref={sectionRef} className="py-20 px-6">
       <div className="container mx-auto max-w-6xl">
+        {/* Exclusive Features Section */}
         <div className="scroll-reveal text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tighter">
             Exclusive Features
@@ -85,31 +127,129 @@ const FeaturesSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {features.map((feature, index) => (
+        <div className="grid md:grid-cols-3 gap-8 mb-20">
+          {exclusiveFeatures.map((feature, index) => (
             <div 
               key={index}
-              className="scroll-reveal cars24-card p-6 group relative"
+              className="scroll-reveal group relative"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              {/* Icon */}
-              <div className="service-icon group-hover:scale-110 transition-transform duration-300">
-                <feature.icon className="w-6 h-6" />
-              </div>
+              {/* Glassmorphic Card */}
+              <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg border border-white/20 p-8 h-full transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-primary/10">
+                {/* Background Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                {/* Icon */}
+                <div className="relative z-10 mb-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <feature.icon className="w-8 h-8 text-white" />
+                  </div>
+                </div>
 
-              {/* Content */}
-              <h3 className="text-lg font-semibold mb-3 text-foreground">
-                {feature.title}
-              </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                {feature.description}
-              </p>
+                {/* Content */}
+                <div className="relative z-10 text-center">
+                  <h3 className="text-2xl font-bold mb-6 text-foreground">
+                    {feature.title}
+                  </h3>
+                  
+                  <ul className="space-y-3 mb-8">
+                    {feature.features.map((item, idx) => (
+                      <li key={idx} className="text-muted-foreground font-medium">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Neumorphism CTA Button */}
+                  <Button 
+                    className="w-full bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl hover:shadow-primary/25 transition-all duration-300 hover:scale-105"
+                  >
+                    Learn More
+                  </Button>
+                </div>
+              </div>
             </div>
           ))}
         </div>
 
+        {/* Coming Soon Section */}
+        <div className="scroll-reveal">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tighter text-sky-950">
+              Upcoming Features to Maximize Your Benefits
+            </h2>
+            <p className="text-xl text-muted-foreground font-light max-w-2xl mx-auto">
+              Interactive calculators to preview your cashback potential
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+            {comingSoonFeatures.map((feature, index) => (
+              <div 
+                key={index}
+                className="scroll-reveal group relative"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {/* Glassmorphic Card */}
+                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg border border-white/20 p-6 h-full transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                  {/* Background Gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-muted/5 to-muted/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  
+                  {/* Icon */}
+                  <div className="relative z-10 mb-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-muted-foreground/20 to-muted-foreground/10 rounded-lg flex items-center justify-center">
+                      <feature.icon className="w-6 h-6 text-muted-foreground" />
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="relative z-10">
+                    <h3 className="text-lg font-bold mb-2 text-foreground">
+                      {feature.title}
+                    </h3>
+                    
+                    <p className="text-sm text-muted-foreground mb-2">
+                      {feature.description}
+                    </p>
+                    
+                    <p className="text-xs text-muted-foreground/80 mb-4">
+                      {feature.voucher}
+                    </p>
+
+                    {/* Interactive Cashback Calculator */}
+                    <div className="space-y-3">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">Amount:</span>
+                        <span className="font-semibold">₹{feature.value[0]}{feature.unit}</span>
+                      </div>
+                      
+                      <Slider
+                        value={feature.value}
+                        onValueChange={feature.setState}
+                        max={feature.title === "Education Loan" ? 50 : feature.title === "Home Loan" ? 100 : feature.title === "Auto Loan" ? 10 : 50}
+                        min={1}
+                        step={1}
+                        className="w-full"
+                      />
+                      
+                      <div className="text-center p-3 bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg border border-primary/20">
+                        <div className="text-lg font-bold text-primary">
+                          ₹{calculateCashback(feature.value[0], feature.rate)}K
+                        </div>
+                        <div className="text-xs text-muted-foreground">
+                          Cashback ({feature.rate}%)
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Stats Section */}
-        <div className="scroll-reveal mt-20">
+        <div className="scroll-reveal">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div>
               <div className="text-3xl font-bold text-muted-foreground/70 mb-2">1000+</div>
