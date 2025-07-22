@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowLeft, CreditCard, Award, Star, Shield, Gift, Plus } from 'lucide-react';
 import { X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import CardComparisonModal from '@/components/CardComparisonModal';
+import CardComparisonSidebar from '@/components/CardComparisonSidebar';
 
 interface CreditCard {
   name: string;
@@ -19,6 +21,7 @@ const CreditCardsPage = () => {
   const navigate = useNavigate();
   const [selectedCards, setSelectedCards] = useState<CreditCard[]>([]);
   const [isComparisonOpen, setIsComparisonOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const creditCards: CreditCard[] = [
     {
@@ -224,186 +227,233 @@ const CreditCardsPage = () => {
 
   const handleAddToComparison = (card: CreditCard) => {
     if (selectedCards.length < 3 && !selectedCards.find(c => c.name === card.name)) {
-      setSelectedCards([...selectedCards, card]);
+      const newSelectedCards = [...selectedCards, card];
+      setSelectedCards(newSelectedCards);
+      
+      // Open sidebar when 2 or more cards are selected
+      if (newSelectedCards.length >= 2) {
+        setIsSidebarOpen(true);
+      }
     }
   };
 
   const handleRemoveFromComparison = (cardName: string) => {
-    setSelectedCards(selectedCards.filter(card => card.name !== cardName));
+    const newSelectedCards = selectedCards.filter(card => card.name !== cardName);
+    setSelectedCards(newSelectedCards);
+    
+    // Close sidebar if less than 2 cards remain
+    if (newSelectedCards.length < 2) {
+      setIsSidebarOpen(false);
+    }
   };
 
   const openComparison = () => {
     if (selectedCards.length > 0) {
       setIsComparisonOpen(true);
+      setIsSidebarOpen(false);
     }
   };
 
+  const handleAddMoreCards = () => {
+    setIsSidebarOpen(false);
+  };
+
+  // Close sidebar when clicking outside (scrim effect)
+  useEffect(() => {
+    const handleClickOutside = () => {
+      if (isSidebarOpen) {
+        setIsSidebarOpen(false);
+      }
+    };
+
+    if (isSidebarOpen) {
+      document.addEventListener('click', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [isSidebarOpen]);
+
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-primary to-primary/90 text-white py-16">
-        <div className="container mx-auto max-w-6xl px-6">
-          <Button
-            variant="ghost"
-            onClick={() => navigate('/')}
-            className="text-white hover:bg-white/10 mb-6"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Home
-          </Button>
-          
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">Credit Cards</h1>
-          <p className="text-xl text-white/90 max-w-2xl">
-            Discover credit cards tailored for CARS24 employees with exclusive cashback offers.
-          </p>
-        </div>
-      </div>
-
-      <div className="container mx-auto max-w-6xl px-6 py-12">
-        {/* Benefits Overview */}
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
-          <div className="text-center p-6 bg-white rounded-xl shadow-lg border border-border">
-            <Award className="w-12 h-12 text-primary mx-auto mb-4" />
-            <h3 className="text-xl font-bold mb-2">Exclusive Cashback</h3>
-            <p className="text-muted-foreground">Up to 10% cashback on select categories</p>
-          </div>
-          <div className="text-center p-6 bg-white rounded-xl shadow-lg border border-border">
-            <Shield className="w-12 h-12 text-primary mx-auto mb-4" />
-            <h3 className="text-xl font-bold mb-2">Zero Hidden Fees</h3>
-            <p className="text-muted-foreground">Transparent pricing with no surprises</p>
-          </div>
-          <div className="text-center p-6 bg-white rounded-xl shadow-lg border border-border">
-            <Star className="w-12 h-12 text-primary mx-auto mb-4" />
-            <h3 className="text-xl font-bold mb-2">Instant Approval</h3>
-            <p className="text-muted-foreground">Quick processing for CARS24 employees</p>
-          </div>
-        </div>
-
-        {/* Credit Cards Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
-          {creditCards.map((card, index) => (
-            <div 
-              key={index}
-              className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg border border-white/20 p-8 transition-all duration-300 hover:scale-105 hover:shadow-xl"
+    <SidebarProvider open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
+      <div className="min-h-screen bg-background">
+        {/* Header */}
+        <div className="bg-gradient-to-r from-primary to-primary/90 text-white py-16">
+          <div className="container mx-auto max-w-6xl px-6">
+            <Button
+              variant="ghost"
+              onClick={() => navigate('/')}
+              className="text-white hover:bg-white/10 mb-6"
             >
-              {card.highlight && (
-                <div className="absolute top-4 right-4 bg-gradient-to-r from-primary to-primary/90 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                  {card.highlight}
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Home
+            </Button>
+            
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">Credit Cards</h1>
+            <p className="text-xl text-white/90 max-w-2xl">
+              Discover credit cards tailored for CARS24 employees with exclusive cashback offers.
+            </p>
+          </div>
+        </div>
+
+        <div className="flex">
+          <div className="flex-1">
+            <div className="container mx-auto max-w-6xl px-6 py-12">
+              {/* Benefits Overview */}
+              <div className="grid md:grid-cols-3 gap-6 mb-12">
+                <div className="text-center p-6 bg-white rounded-xl shadow-lg border border-border">
+                  <Award className="w-12 h-12 text-primary mx-auto mb-4" />
+                  <h3 className="text-xl font-bold mb-2">Exclusive Cashback</h3>
+                  <p className="text-muted-foreground">Up to ₹12,500 Amazon voucher on select cards</p>
+                </div>
+                <div className="text-center p-6 bg-white rounded-xl shadow-lg border border-border">
+                  <Shield className="w-12 h-12 text-primary mx-auto mb-4" />
+                  <h3 className="text-xl font-bold mb-2">Zero Hidden Fees</h3>
+                  <p className="text-muted-foreground">Transparent pricing with no surprises</p>
+                </div>
+                <div className="text-center p-6 bg-white rounded-xl shadow-lg border border-border">
+                  <Star className="w-12 h-12 text-primary mx-auto mb-4" />
+                  <h3 className="text-xl font-bold mb-2">Instant Approval</h3>
+                  <p className="text-muted-foreground">Quick processing for CARS24 employees</p>
+                </div>
+              </div>
+
+              {/* Credit Cards Grid */}
+              <div className="grid md:grid-cols-2 gap-8">
+                {creditCards.map((card, index) => (
+                  <div 
+                    key={index}
+                    className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg border border-white/20 p-8 transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                  >
+                    {card.highlight && (
+                      <div className="absolute top-4 right-4 bg-gradient-to-r from-primary to-primary/90 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                        {card.highlight}
+                      </div>
+                    )}
+
+                    <div className="space-y-6">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center">
+                          <CreditCard className="w-6 h-6 text-white" />
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-bold text-foreground">{card.name}</h3>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="p-4 bg-amber-50 rounded-lg border border-amber-200">
+                          <div className="text-2xl font-bold text-amber-800">₹{card.portalCashback}</div>
+                          <div className="text-sm text-amber-600">Cars24 Cashback</div>
+                        </div>
+                        <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                          <div className="text-lg font-bold text-blue-800">{card.joiningFee}</div>
+                          <div className="text-sm text-blue-600">Joining Fee</div>
+                        </div>
+                      </div>
+
+                      <div className="p-4 bg-primary/5 rounded-lg border border-primary/20">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Gift className="w-4 h-4 text-primary" />
+                          <span className="font-semibold text-primary">Amazon Voucher</span>
+                        </div>
+                        <p className="text-sm text-foreground">Get ₹{card.portalCashback} Amazon voucher on card activation through Cars24</p>
+                      </div>
+
+                      <div className="p-4 bg-muted/30 rounded-lg border border-border">
+                        <div className="flex items-center gap-2 mb-2">
+                          <CreditCard className="w-4 h-4 text-muted-foreground" />
+                          <span className="font-semibold text-muted-foreground">Bank Details</span>
+                        </div>
+                        <p className="text-sm text-muted-foreground">{card.bankName} • Annual Fee: {card.annualFee}</p>
+                      </div>
+
+                      <div>
+                        <h4 className="font-semibold mb-3">Key Features:</h4>
+                        <ul className="space-y-2">
+                          {card.features.map((feature, idx) => (
+                            <li key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
+                              <Star className="w-4 h-4 text-primary" />
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div className="flex gap-3">
+                        <Button 
+                          className="flex-1 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl hover:shadow-primary/25 transition-all duration-300 hover:scale-105"
+                        >
+                          Apply Now
+                        </Button>
+                        <Button 
+                          variant="outline" 
+                          className="px-4 rounded-xl border-primary/20 hover:bg-primary/5"
+                          onClick={() => handleAddToComparison(card)}
+                          disabled={selectedCards.length >= 3 || selectedCards.find(c => c.name === card.name) !== undefined}
+                        >
+                          {selectedCards.find(c => c.name === card.name) ? <Star className="w-4 h-4 fill-current" /> : <Plus className="w-4 h-4" />}
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Selection Status */}
+              {selectedCards.length > 0 && !isSidebarOpen && (
+                <div className="mt-12 p-6 bg-primary/5 rounded-xl border border-primary/20">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-lg font-semibold">Selected for Comparison ({selectedCards.length}/3)</h3>
+                      <p className="text-sm text-muted-foreground">
+                        {selectedCards.length < 2 ? 'Select one more card to start comparing' : 'Ready to compare selected cards'}
+                      </p>
+                    </div>
+                    {selectedCards.length >= 2 && (
+                      <Button onClick={() => setIsSidebarOpen(true)}>
+                        View Selection
+                      </Button>
+                    )}
+                  </div>
                 </div>
               )}
 
-              <div className="space-y-6">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center">
-                    <CreditCard className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-foreground">{card.name}</h3>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="p-4 bg-amber-50 rounded-lg border border-amber-200">
-                    <div className="text-2xl font-bold text-amber-800">₹{card.portalCashback}</div>
-                    <div className="text-sm text-amber-600">Portal Cashback</div>
-                  </div>
-                  <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-                    <div className="text-lg font-bold text-blue-800">{card.joiningFee}</div>
-                    <div className="text-sm text-blue-600">Joining Fee</div>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-primary/5 rounded-lg border border-primary/20">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Gift className="w-4 h-4 text-primary" />
-                    <span className="font-semibold text-primary">Amazon Voucher</span>
-                  </div>
-                  <p className="text-sm text-foreground">Get ₹{card.portalCashback} Amazon voucher on card activation through our portal</p>
-                </div>
-
-                <div className="p-4 bg-muted/30 rounded-lg border border-border">
-                  <div className="flex items-center gap-2 mb-2">
-                    <CreditCard className="w-4 h-4 text-muted-foreground" />
-                    <span className="font-semibold text-muted-foreground">Bank Details</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground">{card.bankName} • Annual Fee: {card.annualFee}</p>
-                </div>
-
-                <div>
-                  <h4 className="font-semibold mb-3">Key Features:</h4>
-                  <ul className="space-y-2">
-                    {card.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <Star className="w-4 h-4 text-primary" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="flex gap-3">
-                  <Button 
-                    className="flex-1 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl hover:shadow-primary/25 transition-all duration-300 hover:scale-105"
-                  >
-                    Apply Now
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    className="px-4 rounded-xl border-primary/20 hover:bg-primary/5"
-                    onClick={() => handleAddToComparison(card)}
-                    disabled={selectedCards.length >= 3 || selectedCards.find(c => c.name === card.name) !== undefined}
-                  >
-                    {selectedCards.find(c => c.name === card.name) ? <Star className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
-                  </Button>
-                </div>
+              {/* Compare Cards CTA */}
+              <div className="text-center mt-12">
+                <h3 className="text-lg font-semibold mb-4">Want to compare cards?</h3>
+                <p className="text-muted-foreground mb-6">Select cards using the + button to compare their Cars24 employee benefits</p>
               </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Selected Cards for Comparison */}
-        {selectedCards.length > 0 && (
-          <div className="mt-12 p-6 bg-primary/5 rounded-xl border border-primary/20">
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <h3 className="text-lg font-semibold">Selected for Comparison ({selectedCards.length}/3)</h3>
-                <p className="text-sm text-muted-foreground">Compare the selected cards side by side</p>
-              </div>
-              <Button onClick={openComparison} disabled={selectedCards.length === 0}>
-                Compare Cards
-              </Button>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {selectedCards.map((card, index) => (
-                <div key={index} className="flex items-center gap-2 bg-card px-3 py-2 rounded-lg border">
-                  <span className="text-sm font-medium">{card.name}</span>
-                  <button
-                    onClick={() => handleRemoveFromComparison(card.name)}
-                    className="text-red-500 hover:text-red-700"
-                  >
-                    <X className="w-4 h-4" />
-                  </button>
-                </div>
-              ))}
             </div>
           </div>
-        )}
 
-        {/* Compare Cards CTA */}
-        <div className="text-center mt-12">
-          <h3 className="text-lg font-semibold mb-4">Want to compare cards?</h3>
-          <p className="text-muted-foreground mb-6">Select up to 3 cards using the + button to compare them side by side</p>
+          {/* Sidebar */}
+          <CardComparisonSidebar
+            selectedCards={selectedCards}
+            onRemoveCard={handleRemoveFromComparison}
+            onCompareCards={openComparison}
+            onAddMoreCards={handleAddMoreCards}
+          />
         </div>
-      </div>
 
-      {/* Comparison Modal */}
-      <CardComparisonModal
-        isOpen={isComparisonOpen}
-        onClose={() => setIsComparisonOpen(false)}
-        selectedCards={selectedCards}
-        onRemoveCard={handleRemoveFromComparison}
-      />
-    </div>
+        {/* Comparison Modal */}
+        <CardComparisonModal
+          isOpen={isComparisonOpen}
+          onClose={() => setIsComparisonOpen(false)}
+          selectedCards={selectedCards}
+          onRemoveCard={handleRemoveFromComparison}
+        />
+
+        {/* Overlay for sidebar */}
+        {isSidebarOpen && (
+          <div 
+            className="fixed inset-0 bg-black/20 z-40"
+            onClick={() => setIsSidebarOpen(false)}
+          />
+        )}
+      </div>
+    </SidebarProvider>
   );
 };
 

@@ -66,7 +66,7 @@ const CardComparisonModal = ({ isOpen, onClose, selectedCards, onRemoveCard }: C
             <div className="grid grid-cols-4 gap-4 mb-4 py-3 border-b border-border">
               <div className="flex items-center gap-2 font-medium">
                 <Gift className="w-4 h-4 text-primary" />
-                Portal Cashback (Amazon Voucher)
+                Cars24 Employee Cashback (Amazon Voucher)
               </div>
               {selectedCards.map((card, index) => (
                 <div key={index} className="text-center">
