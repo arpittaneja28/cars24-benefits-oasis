@@ -41,9 +41,9 @@ const Navigation = () => {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center p-1">
+              <div className="w-12 h-8 flex items-center justify-center">
                 <img 
-                  src="/lovable-uploads/d193fcca-af7a-46c7-8dfc-add4ef663d46.png" 
+                  src="/lovable-uploads/7c7d58a8-b42e-4d3e-bbf2-13db17562e8a.png" 
                   alt="CARS24 Logo" 
                   className="w-full h-full object-contain"
                 />
