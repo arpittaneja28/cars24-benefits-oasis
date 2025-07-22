@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import LoginModal from './LoginModal';
+import { useAuth } from '@/context/AuthContext';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const { isLoggedIn, userEmail, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,12 +66,28 @@ const Navigation = () => {
                   {link.label}
                 </button>
               ))}
-              <Button 
-                className="cars24-button"
-                onClick={() => setIsLoginModalOpen(true)}
-              >
-                Get Started
-              </Button>
+              {isLoggedIn ? (
+                <div className="flex items-center gap-4">
+                  <span className="text-sm text-muted-foreground">
+                    Welcome, {userEmail?.split('@')[0]}
+                  </span>
+                  <Button 
+                    variant="outline"
+                    onClick={logout}
+                    className="flex items-center gap-2"
+                  >
+                    <LogOut className="w-4 h-4" />
+                    Logout
+                  </Button>
+                </div>
+              ) : (
+                <Button 
+                  className="cars24-button"
+                  onClick={() => setIsLoginModalOpen(true)}
+                >
+                  Get Started
+                </Button>
+              )}
             </div>
 
             {/* Mobile Menu Button */}
@@ -105,12 +123,31 @@ const Navigation = () => {
               </button>
             ))}
             <div className="mt-8">
-              <Button 
-                className="w-full"
-                onClick={() => setIsLoginModalOpen(true)}
-              >
-                Get Started
-              </Button>
+              {isLoggedIn ? (
+                <div className="space-y-4">
+                  <div className="text-sm text-muted-foreground">
+                    Welcome, {userEmail?.split('@')[0]}
+                  </div>
+                  <Button 
+                    variant="outline"
+                    className="w-full flex items-center gap-2"
+                    onClick={() => {
+                      logout();
+                      setIsMobileMenuOpen(false);
+                    }}
+                  >
+                    <LogOut className="w-4 h-4" />
+                    Logout
+                  </Button>
+                </div>
+              ) : (
+                <Button 
+                  className="w-full"
+                  onClick={() => setIsLoginModalOpen(true)}
+                >
+                  Get Started
+                </Button>
+              )}
             </div>
           </div>
         </div>

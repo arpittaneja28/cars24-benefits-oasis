@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Star, Wallet, Clock, Calendar, CreditCard, ShoppingBag, Plane, TrendingUp, CheckCircle, Clock3, LogOut, ToggleLeft, ToggleRight } from 'lucide-react';
+import { ArrowRight, Star, Wallet, Clock, Calendar, CreditCard, ShoppingBag, Plane, TrendingUp, CheckCircle, Clock3, LogOut } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
-import { useNavigate } from 'react-router-dom';
 import { Line, Doughnut } from 'react-chartjs-2';
 import ComparisonSection from '@/components/ComparisonSection';
 import heroBackground from '@/assets/hero-background.jpg';
@@ -31,8 +30,7 @@ ChartJS.register(
 
 const HeroSection = () => {
   const heroRef = useRef<HTMLElement>(null);
-  const { isLoggedIn, userEmail, logout, toggleAuth } = useAuth();
-  const navigate = useNavigate();
+  const { isLoggedIn, userEmail, logout } = useAuth();
   const [animatedValues, setAnimatedValues] = useState({
     total: 0,
     pending: 0,
@@ -405,36 +403,6 @@ const HeroSection = () => {
           <ComparisonSection />
         </div>
       )}
-
-      {/* Prototype Demo Toggle - Fixed Position */}
-      <div className="fixed top-4 right-4 z-50">
-        <div className="bg-card border border-border rounded-lg p-4 shadow-lg">
-          <h4 className="text-sm font-medium mb-2">Prototype Demo</h4>
-          <Button
-            onClick={toggleAuth}
-            variant="outline"
-            size="sm"
-            className="flex items-center gap-2"
-          >
-            {isLoggedIn ? (
-              <>
-                <ToggleRight className="w-4 h-4 text-green-600" />
-                Logged In
-              </>
-            ) : (
-              <>
-                <ToggleLeft className="w-4 h-4 text-muted-foreground" />
-                Logged Out
-              </>
-            )}
-          </Button>
-          {isLoggedIn && (
-            <p className="text-xs text-muted-foreground mt-1">
-              {userEmail}
-            </p>
-          )}
-        </div>
-      </div>
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
