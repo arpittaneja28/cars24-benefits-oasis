@@ -1,16 +1,29 @@
-import React from 'react';
-import { ArrowLeft, CreditCard, Award, Star, Shield } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowLeft, CreditCard, Award, Star, Shield, Gift, Plus, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
+import CardComparisonModal from '@/components/CardComparisonModal';
+
+interface CreditCard {
+  name: string;
+  bankName: string;
+  portalCashback: number;
+  joiningFee: string;
+  annualFee: string;
+  features: string[];
+  highlight?: string;
+}
 
 const CreditCardsPage = () => {
   const navigate = useNavigate();
+  const [selectedCards, setSelectedCards] = useState<CreditCard[]>([]);
+  const [isComparisonOpen, setIsComparisonOpen] = useState(false);
 
-  const creditCards = [
+  const creditCards: CreditCard[] = [
     {
-      name: "CARS24 Platinum Card",
-      annualSavings: "₹12,000",
-      cashback: "5% cashback on Flipkart, 2% on other purchases",
+      name: "Jupiter Edge Credit Card",
+      bankName: "Federal Bank",
+      portalCashback: 1100,
       joiningFee: "₹499",
       annualFee: "₹999",
       features: [
@@ -22,9 +35,9 @@ const CreditCardsPage = () => {
       highlight: "Most Popular"
     },
     {
-      name: "CARS24 Gold Card",
-      annualSavings: "₹8,000",
-      cashback: "3% cashback on Amazon, 1.5% on other purchases",
+      name: "RBL Bank Play Credit Card",
+      bankName: "RBL Bank",
+      portalCashback: 1250,
       joiningFee: "₹299",
       annualFee: "₹599",
       features: [
@@ -32,12 +45,13 @@ const CreditCardsPage = () => {
         "Fuel surcharge waiver",
         "Movie ticket discounts",
         "Dining privileges"
-      ]
+      ],
+      highlight: "Highest Cashback"
     },
     {
-      name: "CARS24 Travel Card",
-      annualSavings: "₹15,000",
-      cashback: "10% on travel bookings, 3% on dining",
+      name: "Supermoney Rupay Card",
+      bankName: "Axis",
+      portalCashback: 1100,
       joiningFee: "₹999",
       annualFee: "₹1,999",
       features: [
@@ -45,13 +59,12 @@ const CreditCardsPage = () => {
         "Unlimited airport lounge access",
         "Travel insurance coverage",
         "Hotel booking discounts"
-      ],
-      highlight: "Premium"
+      ]
     },
     {
-      name: "CARS24 Cashback Card",
-      annualSavings: "₹10,000",
-      cashback: "Flat 2% cashback on all purchases",
+      name: "Axis Privilege Amex Credit Card",
+      bankName: "Axis",
+      portalCashback: 1100,
       joiningFee: "₹199",
       annualFee: "₹399",
       features: [
@@ -60,8 +73,169 @@ const CreditCardsPage = () => {
         "Instant card approval",
         "Digital wallet integration"
       ]
+    },
+    {
+      name: "Kotak Essentia Platinum Credit Card",
+      bankName: "Kotak",
+      portalCashback: 1100,
+      joiningFee: "₹599",
+      annualFee: "₹899",
+      features: [
+        "Lifestyle benefits",
+        "Reward points on every purchase",
+        "Contactless payments",
+        "24/7 customer support"
+      ]
+    },
+    {
+      name: "Kotak Delight Platinum Credit Card",
+      bankName: "Kotak",
+      portalCashback: 1100,
+      joiningFee: "₹399",
+      annualFee: "₹699",
+      features: [
+        "Dining discounts",
+        "Entertainment benefits",
+        "Shopping rewards",
+        "Easy EMI options"
+      ]
+    },
+    {
+      name: "PIXEL Play Credit Card",
+      bankName: "HDFC",
+      portalCashback: 1100,
+      joiningFee: "₹799",
+      annualFee: "₹1,299",
+      features: [
+        "Online shopping rewards",
+        "Gaming benefits",
+        "Tech lifestyle perks",
+        "Digital wallet integration"
+      ]
+    },
+    {
+      name: "Paytm HDFC Bank Select Credit Card",
+      bankName: "HDFC",
+      portalCashback: 1100,
+      joiningFee: "₹999",
+      annualFee: "₹1,499",
+      features: [
+        "Paytm wallet benefits",
+        "Cashback on UPI transactions",
+        "Travel benefits",
+        "Insurance coverage"
+      ]
+    },
+    {
+      name: "Rio Rupay Credit Card",
+      bankName: "Yes Bank",
+      portalCashback: 1000,
+      joiningFee: "₹299",
+      annualFee: "₹499",
+      features: [
+        "RuPay network benefits",
+        "Domestic transactions",
+        "Fuel surcharge waiver",
+        "ATM cash withdrawal"
+      ]
+    },
+    {
+      name: "PVR Kotak Platinum Credit Card",
+      bankName: "Kotak",
+      portalCashback: 1100,
+      joiningFee: "₹599",
+      annualFee: "₹999",
+      features: [
+        "Movie ticket discounts",
+        "PVR cinema benefits",
+        "F&B discounts",
+        "Entertainment rewards"
+      ]
+    },
+    {
+      name: "MakeMyTrip ICICI Bank Signature Credit Card",
+      bankName: "ICICI Bank",
+      portalCashback: 1250,
+      joiningFee: "₹1,499",
+      annualFee: "₹2,999",
+      features: [
+        "Travel booking benefits",
+        "Airport lounge access",
+        "Hotel discounts",
+        "Travel insurance"
+      ],
+      highlight: "Travel Benefits"
+    },
+    {
+      name: "SBI Card Miles Credit Card",
+      bankName: "SBI",
+      portalCashback: 12500,
+      joiningFee: "₹4,999",
+      annualFee: "₹9,999",
+      features: [
+        "Air miles accumulation",
+        "Premium travel benefits",
+        "Concierge services",
+        "Priority customer service"
+      ],
+      highlight: "Premium"
+    },
+    {
+      name: "HSBC Travel One Credit Card",
+      bankName: "HSBC Bank",
+      portalCashback: 1250,
+      joiningFee: "₹1,999",
+      annualFee: "₹3,999",
+      features: [
+        "International travel benefits",
+        "Zero forex markup",
+        "Global customer support",
+        "Premium assistance"
+      ]
+    },
+    {
+      name: "IDFC First SWYP Credit Card",
+      bankName: "IDFC",
+      portalCashback: 1000,
+      joiningFee: "₹0",
+      annualFee: "₹499",
+      features: [
+        "No joining fee",
+        "Flexible payment options",
+        "Digital-first experience",
+        "Instant approval"
+      ]
+    },
+    {
+      name: "IRCTC RBL Credit Card",
+      bankName: "RBL Bank",
+      portalCashback: 800,
+      joiningFee: "₹199",
+      annualFee: "₹399",
+      features: [
+        "Railway booking benefits",
+        "IRCTC transaction benefits",
+        "Travel insurance",
+        "Lounge access"
+      ]
     }
   ];
+
+  const handleAddToComparison = (card: CreditCard) => {
+    if (selectedCards.length < 3 && !selectedCards.find(c => c.name === card.name)) {
+      setSelectedCards([...selectedCards, card]);
+    }
+  };
+
+  const handleRemoveFromComparison = (cardName: string) => {
+    setSelectedCards(selectedCards.filter(card => card.name !== cardName));
+  };
+
+  const openComparison = () => {
+    if (selectedCards.length > 0) {
+      setIsComparisonOpen(true);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -128,9 +302,9 @@ const CreditCardsPage = () => {
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="p-4 bg-green-50 rounded-lg border border-green-200">
-                    <div className="text-2xl font-bold text-green-800">{card.annualSavings}</div>
-                    <div className="text-sm text-green-600">Annual Savings</div>
+                  <div className="p-4 bg-amber-50 rounded-lg border border-amber-200">
+                    <div className="text-2xl font-bold text-amber-800">₹{card.portalCashback}</div>
+                    <div className="text-sm text-amber-600">Portal Cashback</div>
                   </div>
                   <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
                     <div className="text-lg font-bold text-blue-800">{card.joiningFee}</div>
@@ -140,10 +314,18 @@ const CreditCardsPage = () => {
 
                 <div className="p-4 bg-primary/5 rounded-lg border border-primary/20">
                   <div className="flex items-center gap-2 mb-2">
-                    <Award className="w-4 h-4 text-primary" />
-                    <span className="font-semibold text-primary">Cashback Offer</span>
+                    <Gift className="w-4 h-4 text-primary" />
+                    <span className="font-semibold text-primary">Amazon Voucher</span>
                   </div>
-                  <p className="text-sm text-foreground">{card.cashback}</p>
+                  <p className="text-sm text-foreground">Get ₹{card.portalCashback} Amazon voucher on card activation through our portal</p>
+                </div>
+
+                <div className="p-4 bg-muted/30 rounded-lg border border-border">
+                  <div className="flex items-center gap-2 mb-2">
+                    <CreditCard className="w-4 h-4 text-muted-foreground" />
+                    <span className="font-semibold text-muted-foreground">Bank Details</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground">{card.bankName} • Annual Fee: {card.annualFee}</p>
                 </div>
 
                 <div>
@@ -167,8 +349,10 @@ const CreditCardsPage = () => {
                   <Button 
                     variant="outline" 
                     className="px-4 rounded-xl border-primary/20 hover:bg-primary/5"
+                    onClick={() => handleAddToComparison(card)}
+                    disabled={selectedCards.length >= 3 || selectedCards.find(c => c.name === card.name) !== undefined}
                   >
-                    Compare
+                    {selectedCards.find(c => c.name === card.name) ? <Star className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                   </Button>
                 </div>
               </div>
@@ -176,17 +360,48 @@ const CreditCardsPage = () => {
           ))}
         </div>
 
+        {/* Selected Cards for Comparison */}
+        {selectedCards.length > 0 && (
+          <div className="mt-12 p-6 bg-primary/5 rounded-xl border border-primary/20">
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <h3 className="text-lg font-semibold">Selected for Comparison ({selectedCards.length}/3)</h3>
+                <p className="text-sm text-muted-foreground">Compare the selected cards side by side</p>
+              </div>
+              <Button onClick={openComparison} disabled={selectedCards.length === 0}>
+                Compare Cards
+              </Button>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {selectedCards.map((card, index) => (
+                <div key={index} className="flex items-center gap-2 bg-card px-3 py-2 rounded-lg border">
+                  <span className="text-sm font-medium">{card.name}</span>
+                  <button
+                    onClick={() => handleRemoveFromComparison(card.name)}
+                    className="text-red-500 hover:text-red-700"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Compare Cards CTA */}
         <div className="text-center mt-12">
-          <Button 
-            variant="outline"
-            size="lg"
-            className="border-primary/20 hover:bg-primary/5 text-primary"
-          >
-            Compare All Cards
-          </Button>
+          <h3 className="text-lg font-semibold mb-4">Want to compare cards?</h3>
+          <p className="text-muted-foreground mb-6">Select up to 3 cards using the + button to compare them side by side</p>
         </div>
       </div>
+
+      {/* Comparison Modal */}
+      <CardComparisonModal
+        isOpen={isComparisonOpen}
+        onClose={() => setIsComparisonOpen(false)}
+        selectedCards={selectedCards}
+        onRemoveCard={handleRemoveFromComparison}
+      />
     </div>
   );
 };
