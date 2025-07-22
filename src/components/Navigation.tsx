@@ -2,13 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import LoginModal from './LoginModal';
-import { removeBackground, loadImageFromUrl } from '@/utils/backgroundRemoval';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const [processedLogoUrl, setProcessedLogoUrl] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,23 +15,6 @@ const Navigation = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const processLogo = async () => {
-      try {
-        const img = await loadImageFromUrl('/lovable-uploads/426c7e15-f898-4b7b-9a27-c08e66e138c5.png');
-        const processedBlob = await removeBackground(img);
-        const url = URL.createObjectURL(processedBlob);
-        setProcessedLogoUrl(url);
-      } catch (error) {
-        console.error('Failed to process logo:', error);
-        // Fallback to original logo
-        setProcessedLogoUrl('/lovable-uploads/426c7e15-f898-4b7b-9a27-c08e66e138c5.png');
-      }
-    };
-
-    processLogo();
   }, []);
 
   const navLinks = [
@@ -60,11 +41,11 @@ const Navigation = () => {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center space-x-3">
-              <div className="w-20 h-12 flex items-center justify-center">
+              <div className="flex items-center justify-center">
                 <img 
-                  src={processedLogoUrl || '/lovable-uploads/426c7e15-f898-4b7b-9a27-c08e66e138c5.png'} 
+                  src="/lovable-uploads/cc27b6ed-abf2-40fb-9ce3-15679925e9e7.png" 
                   alt="CARS24 Logo" 
-                  className="h-10 w-auto object-contain"
+                  className="w-[180px] h-auto object-contain"
                 />
               </div>
               <span className="text-foreground font-semibold text-xl tracking-tight">
