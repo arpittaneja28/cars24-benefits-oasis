@@ -5,6 +5,7 @@ import { useAuth } from '@/context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { Line, Doughnut } from 'react-chartjs-2';
 import ComparisonSection from '@/components/ComparisonSection';
+import heroBackground from '@/assets/hero-background.jpg';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -99,13 +100,16 @@ const HeroSection = () => {
     <section 
       id="hero" 
       ref={heroRef}
-      className="min-h-screen flex flex-col items-center justify-center relative px-6 bg-background"
+      className="min-h-screen flex flex-col items-center justify-center relative px-6 overflow-hidden"
+      style={{
+        backgroundImage: `url(${heroBackground})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
     >
-      {/* Clean Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-20 w-72 h-72 bg-primary rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-20 w-72 h-72 bg-secondary rounded-full blur-3xl"></div>
-      </div>
+      {/* Overlay for text readability */}
+      <div className="absolute inset-0 bg-background/80 backdrop-blur-sm"></div>
 
       <div className="relative z-10 text-center max-w-6xl mx-auto">
         {/* Badge */}
@@ -123,14 +127,13 @@ const HeroSection = () => {
           </span>
           <br />
           <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Financial Benefits
+            Cashback Benefits
           </span>
         </h1>
 
         {/* Subtitle */}
         <p className="scroll-reveal text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-          Exclusive loans, credit cards, and cashback rewards designed specifically for CARS24 employees. 
-          Experience premium financial services with unmatched benefits.
+          Exclusive cashback on Personal Loans, Credit Cards, and Online Shopping—just for our valued CARS24 employees.
         </p>
 
         {/* CTA Buttons */}
