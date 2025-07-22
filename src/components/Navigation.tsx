@@ -37,18 +37,18 @@ const Navigation = () => {
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled ? 'nav-clean shadow-md' : 'bg-transparent'
       }`}>
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
+        <div className="container mx-auto px-6 py-3">
+          <div className="flex items-center justify-between h-12">
             {/* Logo */}
             <div className="flex items-center space-x-3">
               <div className="flex items-center justify-center">
                 <img 
                   src="/lovable-uploads/cc27b6ed-abf2-40fb-9ce3-15679925e9e7.png" 
                   alt="CARS24 Logo" 
-                  className="w-[180px] h-auto object-contain"
+                  className="h-8 w-auto object-contain"
                 />
               </div>
-              <span className="text-foreground font-semibold text-xl tracking-tight">
+              <span className="text-foreground font-semibold text-lg tracking-tight">
                 Employee Benefits
               </span>
             </div>

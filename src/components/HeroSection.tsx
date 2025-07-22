@@ -113,7 +113,7 @@ const HeroSection = () => {
 
       <div className="relative z-10 text-center max-w-6xl mx-auto">
         {/* Badge */}
-        <div className="scroll-reveal mb-6 mt-32">
+        <div className="scroll-reveal mb-6 mt-24">
           <div className="inline-flex items-center bg-card border border-border rounded-full px-4 py-2 text-sm text-muted-foreground shadow-sm">
             <Star className="w-4 h-4 mr-2 text-primary fill-current" />
             {isLoggedIn ? `Welcome back, ${userEmail?.split('@')[0]}!` : 'Exclusive for CARS24 Employees'}

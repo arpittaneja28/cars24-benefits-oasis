@@ -103,9 +103,9 @@ const ComparisonSection = () => {
                         {React.cloneElement(benefit.icon, { className: "w-6 h-6" })}
                       </div>
                       <div className="flex-1 space-y-3">
-                        <div className="flex items-center gap-2">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                           <h4 className="font-semibold text-lg">{benefit.title}</h4>
-                          <Badge variant="default" className="bg-green-100 text-green-800 hover:bg-green-100">
+                          <Badge variant="default" className="bg-green-100 text-green-800 hover:bg-green-100 w-fit">
                             <Check className="w-3 h-3 mr-1" />
                             Available
                           </Badge>
@@ -142,9 +142,9 @@ const ComparisonSection = () => {
                         {React.cloneElement(benefit.icon, { className: "w-6 h-6" })}
                       </div>
                       <div className="flex-1 space-y-3">
-                        <div className="flex items-center gap-2">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                           <h4 className="font-semibold text-lg">{benefit.title}</h4>
-                          <Badge variant="destructive" className="bg-red-100 text-red-800 hover:bg-red-100">
+                          <Badge variant="destructive" className="bg-red-100 text-red-800 hover:bg-red-100 w-fit">
                             <X className="w-3 h-3 mr-1" />
                             Limited
                           </Badge>
