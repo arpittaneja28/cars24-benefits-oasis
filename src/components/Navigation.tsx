@@ -41,8 +41,12 @@ const Navigation = () => {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">C24</span>
+              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center p-1">
+                <img 
+                  src="/lovable-uploads/d193fcca-af7a-46c7-8dfc-add4ef663d46.png" 
+                  alt="CARS24 Logo" 
+                  className="w-full h-full object-contain"
+                />
               </div>
               <span className="text-foreground font-semibold text-xl tracking-tight">
                 Employee Benefits
