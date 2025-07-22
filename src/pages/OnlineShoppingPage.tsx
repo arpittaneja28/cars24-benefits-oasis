@@ -445,8 +445,7 @@ const OnlineShoppingPage = () => {
               <div key={index} className={`relative rounded-2xl overflow-hidden bg-gradient-to-br ${deal.bgColor} text-white group premium-card shadow-2xl`}>
                 <div className="absolute top-4 left-4">
                   <div className="bg-white text-blue-600 px-3 py-2 rounded-lg text-sm font-bold flex items-center shadow-lg">
-                    <img src="/lovable-uploads/ce617e6e-6290-46ab-b608-1a193f5ad74f.png" alt="CARS24" className="h-4 w-auto mr-1" />
-                    Flipkart
+                    <span className="mr-1">📱</span> Flipkart
                   </div>
                 </div>
                 
@@ -461,8 +460,7 @@ const OnlineShoppingPage = () => {
                   </div>
                   
                   <div className="space-y-4 relative z-10">
-                    <div className="bg-white/20 backdrop-blur-sm px-4 py-3 rounded-xl text-center border border-white/30 flex items-center justify-center">
-                      <img src="/lovable-uploads/ce617e6e-6290-46ab-b608-1a193f5ad74f.png" alt="CARS24" className="h-3 w-auto mr-2" />
+                    <div className="bg-white/20 backdrop-blur-sm px-4 py-3 rounded-xl text-center border border-white/30">
                       <span className="text-sm font-bold">{deal.cashback}</span>
                     </div>
                     <Button className="w-full neuro-button-premium text-blue-600 hover:text-white hover:bg-blue-600 font-bold py-3 transition-all duration-300">
@@ -488,8 +486,7 @@ const OnlineShoppingPage = () => {
             {beautyDeals.map((deal, index) => (
               <div key={index} className={`relative rounded-2xl overflow-hidden bg-gradient-to-br ${deal.bgColor} text-white group hover:scale-105 transition-all duration-300`}>
                 <div className="absolute top-3 left-3">
-                  <div className="bg-white text-pink-600 px-2 py-1 rounded text-xs font-bold flex items-center">
-                    <img src="/lovable-uploads/ce617e6e-6290-46ab-b608-1a193f5ad74f.png" alt="CARS24" className="h-3 w-auto mr-1" />
+                  <div className="bg-white text-pink-600 px-2 py-1 rounded text-xs font-bold">
                     NYKAA
                   </div>
                 </div>
@@ -508,15 +505,14 @@ const OnlineShoppingPage = () => {
                     <p className="text-lg font-semibold">{deal.discount}</p>
                   </div>
                   
-                    <div className="space-y-3">
-                      <div className="bg-primary px-3 py-2 rounded-lg text-center flex items-center justify-center">
-                        <img src="/lovable-uploads/ce617e6e-6290-46ab-b608-1a193f5ad74f.png" alt="CARS24" className="h-3 w-auto mr-2" />
-                        <span className="text-sm font-bold">{deal.cashback}</span>
-                      </div>
-                      <Button className="w-full bg-white text-pink-600 hover:bg-white/90 font-semibold">
-                        Grab Deal
-                      </Button>
+                  <div className="space-y-3">
+                    <div className="bg-primary px-3 py-2 rounded-lg text-center">
+                      <span className="text-sm font-bold">{deal.cashback}</span>
                     </div>
+                    <Button className="w-full bg-white text-pink-600 hover:bg-white/90 font-semibold">
+                      Grab Deal
+                    </Button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -537,8 +533,7 @@ const OnlineShoppingPage = () => {
               <div key={index} className={`relative rounded-2xl overflow-hidden bg-gradient-to-br ${deal.bgColor} text-white group hover:scale-105 transition-all duration-300`}>
                 <div className="absolute top-3 left-3">
                   <div className="bg-white text-blue-600 px-2 py-1 rounded text-xs font-bold flex items-center">
-                    <img src="/lovable-uploads/ce617e6e-6290-46ab-b608-1a193f5ad74f.png" alt="CARS24" className="h-3 w-auto mr-1" />
-                    {deal.brand === "Expedia" && "Expedia"}
+                    {deal.brand === "Expedia" && "⭐ Expedia"}
                     {deal.brand === "Booking.com" && "booking.com"}
                     {deal.brand === "IndiGo" && "IndiGo ✈️"}
                     {deal.brand === "Qatar Airways" && "QATAR ✈️"}
@@ -553,8 +548,7 @@ const OnlineShoppingPage = () => {
                   </div>
                   
                   <div className="space-y-3">
-                    <div className="bg-primary px-3 py-2 rounded-lg text-center flex items-center justify-center">
-                      <img src="/lovable-uploads/ce617e6e-6290-46ab-b608-1a193f5ad74f.png" alt="CARS24" className="h-3 w-auto mr-2" />
+                    <div className="bg-primary px-3 py-2 rounded-lg text-center">
                       <span className="text-sm font-bold">{deal.cashback}</span>
                     </div>
                     <Button className="w-full bg-white text-blue-600 hover:bg-white/90 font-semibold">
