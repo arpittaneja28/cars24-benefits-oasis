@@ -78,7 +78,7 @@ const FAQSection = () => {
           {faqs.map((faq, index) => (
             <div 
               key={index}
-              className="scroll-reveal glass-card rounded-xl overflow-hidden"
+              className="scroll-reveal bg-card/50 backdrop-blur-sm rounded-xl overflow-hidden"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <button
@@ -110,7 +110,7 @@ const FAQSection = () => {
 
         {/* Contact CTA */}
         <div className="scroll-reveal text-center mt-12">
-          <div className="glass-card p-6 rounded-2xl">
+          <div className="bg-card/50 backdrop-blur-sm p-6 rounded-2xl">
             <h3 className="text-xl font-semibold mb-2">Still have questions?</h3>
             <p className="text-muted-foreground mb-4">
               Our support team is here to help you get the most out of your benefits
