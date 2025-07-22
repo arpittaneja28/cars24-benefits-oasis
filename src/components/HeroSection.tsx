@@ -78,6 +78,37 @@ const HeroSection = () => {
     return () => observer.disconnect();
   }, [isLoggedIn]);
 
+  // Trigger animation when user logs in
+  useEffect(() => {
+    if (isLoggedIn) {
+      // Reset animated values and trigger animation
+      setAnimatedValues({ total: 0, pending: 0, thisMonth: 0 });
+      
+      // Start animation after a short delay
+      setTimeout(() => {
+        const targets = { total: 2847, pending: 456, thisMonth: 312 };
+        const duration = 1500;
+        const steps = 60;
+        const increment = duration / steps;
+        
+        let step = 0;
+        const timer = setInterval(() => {
+          step++;
+          const progress = step / steps;
+          const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+          
+          setAnimatedValues({
+            total: Math.round(targets.total * easeOutCubic),
+            pending: Math.round(targets.pending * easeOutCubic),
+            thisMonth: Math.round(targets.thisMonth * easeOutCubic),
+          });
+          
+          if (step >= steps) clearInterval(timer);
+        }, increment);
+      }, 500);
+    }
+  }, [isLoggedIn]);
+
   const handleGetStarted = () => {
     if (isLoggedIn) {
       // For logged-in users, scroll to features (Get Cashback action)
