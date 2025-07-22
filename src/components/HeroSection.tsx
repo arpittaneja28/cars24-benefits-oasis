@@ -36,6 +36,9 @@ const HeroSection = () => {
     pending: 0,
     thisMonth: 0,
   });
+  const [forceUpdate, setForceUpdate] = useState(0);
+
+  console.log('HeroSection render - isLoggedIn:', isLoggedIn, 'userEmail:', userEmail);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
