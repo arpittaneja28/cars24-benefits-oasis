@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -8,26 +9,27 @@
 
 @layer base {
   :root {
-    /* CARS24 Light Theme - Professional & Clean */
-    --background: 210 17% 98%;  /* Light gray background #f5f7fa */
-    --foreground: 0 0% 10%;     /* Dark text #1a1a1a */
+    /* Luxury Background - Elegant Gradient */
+    --background: 225 15% 8%;    /* Deep navy #0f1419 */
+    --foreground: 0 0% 95%;      /* Light text #f2f2f2 */
 
-    --card: 0 0% 100%;          /* Pure white cards */
-    --card-foreground: 0 0% 10%;
+    --card: 225 15% 12%;         /* Glass card background #1a1f2e */
+    --card-foreground: 0 0% 95%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
+    --popover: 225 15% 12%;
+    --popover-foreground: 0 0% 95%;
 
-    /* CARS24 Brand Colors - Sky Blue Theme */
-    --primary: 215 100% 15%;     /* Sky-950 #0c4a6e */
+    /* Luxury Brand Colors - Premium Gold & Blue */
+    --primary: 215 100% 60%;     /* Luxury blue #0066ff */
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 215 100% 12%; /* Darker sky-950 for hover */
+    --primary-hover: 215 100% 55%; /* Brighter blue for hover */
+    --primary-glow: 215 100% 70%; /* Glow effect */
 
-    --secondary: 215 100% 26%;   /* CARS24 Blue #003087 */
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 45 93% 58%;     /* Luxury gold #f4d03f */
+    --secondary-foreground: 225 15% 8%;
 
-    --muted: 210 17% 96%;        /* Light muted background */
-    --muted-foreground: 0 0% 45%; /* Muted text */
+    --muted: 225 15% 15%;        /* Darker muted background */
+    --muted-foreground: 0 0% 65%; /* Muted text */
 
     --accent: 142 69% 58%;       /* Success Green #4caf50 */
     --accent-foreground: 0 0% 100%;
@@ -35,20 +37,28 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 214 13% 88%;       /* Light border */
-    --input: 214 13% 88%;
-    --ring: 215 100% 15%;        /* Sky-950 focus ring */
+    --border: 225 15% 20%;       /* Glass border */
+    --input: 225 15% 15%;
+    --ring: 215 100% 60%;        /* Luxury blue focus ring */
 
-    /* Clean Design Elements */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.08);
+    /* Luxury Design Elements */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow: 0 4px 8px 0 rgb(0 0 0 / 0.3), 0 2px 4px -1px rgb(0 0 0 / 0.2);
+    --shadow-md: 0 8px 16px -4px rgb(0 0 0 / 0.4), 0 4px 8px -2px rgb(0 0 0 / 0.3);
+    --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 10px 10px -5px rgb(0 0 0 / 0.3);
+    --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --shadow-glow: 0 0 20px hsl(var(--primary) / 0.3);
+    --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.4);
 
-    /* Professional Transitions */
-    --transition-smooth: all 0.2s ease-in-out;
-    --transition-fast: all 0.15s ease-out;
+    /* Luxury Gradients */
+    --gradient-luxury: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
+    --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    --gradient-bg: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(225 15% 6%) 100%);
+
+    /* Luxury Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-glow: all 0.3s ease-out;
 
     --radius: 0.75rem;
 
@@ -119,42 +129,46 @@
 }
 
 @layer components {
-  /* CARS24 Clean Card Component */
-  .cars24-card {
-    background: hsl(var(--card));
-    border: 1px solid hsl(var(--border));
-    box-shadow: var(--shadow-card);
-    @apply rounded-xl;
+  /* Glassmorphic Card Component */
+  .glass-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: var(--shadow-glass);
+    @apply rounded-2xl;
     transition: var(--transition-smooth);
   }
 
-  .cars24-card:hover {
-    box-shadow: var(--shadow-lg);
+  .glass-card:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+    transform: translateY(-4px) scale(1.02);
+  }
+
+  /* Neumorphic Button */
+  .neuro-button {
+    background: linear-gradient(145deg, hsl(var(--primary)), hsl(var(--primary-hover)));
+    color: hsl(var(--primary-foreground));
+    border: none;
+    @apply rounded-2xl font-semibold px-8 py-4 text-base;
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.4), -4px -4px 8px rgba(255, 255, 255, 0.1);
+    transition: var(--transition-glow);
+  }
+
+  .neuro-button:hover {
+    background: linear-gradient(145deg, hsl(var(--primary-hover)), hsl(var(--primary)));
+    box-shadow: var(--shadow-glow), 12px 12px 24px rgba(0, 0, 0, 0.5), -6px -6px 12px rgba(255, 255, 255, 0.15);
     transform: translateY(-2px);
   }
 
-  /* CARS24 Clean Button */
-  .cars24-button {
-    background: hsl(var(--primary));
-    color: hsl(var(--primary-foreground));
-    border: none;
-    @apply rounded-lg font-semibold px-6 py-3 text-sm;
-    transition: var(--transition-fast);
-  }
-
-  .cars24-button:hover {
-    background: hsl(var(--primary-hover));
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
-  }
-
-  .cars24-button-secondary {
-    background: hsl(var(--secondary));
+  .neuro-button-secondary {
+    background: linear-gradient(145deg, hsl(var(--secondary)), hsl(45 93% 50%));
     color: hsl(var(--secondary-foreground));
   }
 
-  .cars24-button-secondary:hover {
-    background: hsl(215 100% 22%);
+  .neuro-button-secondary:hover {
+    background: linear-gradient(145deg, hsl(45 93% 50%), hsl(var(--secondary)));
+    box-shadow: 0 0 20px hsl(var(--secondary) / 0.4), 12px 12px 24px rgba(0, 0, 0, 0.5);
   }
 
   /* Scroll Reveal Animation - Updated for light theme */
@@ -208,17 +222,38 @@
     color: hsl(var(--primary));
   }
 
-  /* Clean Input Style */
-  .cars24-input {
-    background: hsl(var(--card));
-    border: 1px solid hsl(var(--border));
-    @apply rounded-lg px-4 py-3 text-foreground;
-    transition: var(--transition-fast);
+  /* Luxury Input Style */
+  .luxury-input {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    @apply rounded-2xl px-6 py-4 text-foreground text-lg;
+    transition: var(--transition-glow);
   }
 
-  .cars24-input:focus {
-    border-color: hsl(var(--primary));
-    box-shadow: 0 0 0 2px hsl(var(--ring) / 0.2);
+  .luxury-input:focus {
+    border-color: hsl(var(--primary) / 0.6);
+    box-shadow: 0 0 0 2px hsl(var(--primary) / 0.2), var(--shadow-glow);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
     outline: none;
+  }
+
+  .luxury-input::placeholder {
+    color: hsl(var(--muted-foreground));
+  }
+
+  /* Luxury Modal Backdrop */
+  .modal-backdrop {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+  }
+
+  /* Success State Indicators */
+  .success-glow {
+    box-shadow: 0 0 20px hsl(142 69% 58% / 0.4);
+  }
+
+  .error-glow {
+    box-shadow: 0 0 20px hsl(0 84% 60% / 0.4);
   }
 }
