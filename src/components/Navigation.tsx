@@ -43,7 +43,7 @@ const Navigation = () => {
             <div className="flex items-center space-x-3">
               <div className="w-16 h-10 flex items-center justify-center">
                 <img 
-                  src="/lovable-uploads/7c7d58a8-b42e-4d3e-bbf2-13db17562e8a.png" 
+                  src="/lovable-uploads/426c7e15-f898-4b7b-9a27-c08e66e138c5.png" 
                   alt="CARS24 Logo" 
                   className="h-8 w-auto object-contain"
                 />
