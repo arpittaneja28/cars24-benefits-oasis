@@ -45,7 +45,7 @@ const Navigation = () => {
                 <img 
                   src="/lovable-uploads/cc27b6ed-abf2-40fb-9ce3-15679925e9e7.png" 
                   alt="CARS24 Logo" 
-                  className="h-8 w-auto object-contain"
+                  className="h-10 w-auto object-contain"
                 />
               </div>
               <span className="text-foreground font-semibold text-lg tracking-tight">
