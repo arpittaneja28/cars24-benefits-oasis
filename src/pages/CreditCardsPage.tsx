@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { ArrowLeft, CreditCard, Award, Star, Shield, Gift, Plus, X } from 'lucide-react';
+import { ArrowLeft, CreditCard, Award, Star, Shield, Gift, Plus } from 'lucide-react';
+import { X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import CardComparisonModal from '@/components/CardComparisonModal';
