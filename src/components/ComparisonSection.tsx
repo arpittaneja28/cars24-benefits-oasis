@@ -76,44 +76,92 @@ const ComparisonSection = () => {
           {/* Header */}
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-              CARS24 Employees
+              Why Choose CARS24 Benefits?
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Exclusive benefits & premium support
+              See how CARS24 employees get exclusive benefits compared to the general public
             </p>
           </div>
 
-          {/* Benefits Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-            {benefits.map((benefit, index) => (
-              <Card 
-                key={index}
-                className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-border/50"
-              >
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                      {React.cloneElement(benefit.icon, { className: "w-6 h-6" })}
-                    </div>
-                    <div className="flex-1 space-y-3">
-                      <div className="flex items-center gap-2">
-                        <h4 className="font-semibold text-lg">{benefit.title}</h4>
-                        <Badge variant="default" className="bg-green-100 text-green-800 hover:bg-green-100">
+          {/* Comparison Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+            {/* CARS24 Employees Column */}
+            <div className="space-y-6">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold text-green-600 mb-2">CARS24 Employees</h3>
+                <p className="text-muted-foreground">Exclusive benefits & premium support</p>
+              </div>
+              
+              {benefits.map((benefit, index) => (
+                <Card 
+                  key={`employee-${index}`}
+                  className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-green-200 bg-green-50/50"
+                >
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="p-3 rounded-xl bg-green-100 text-green-600 group-hover:bg-green-600 group-hover:text-white transition-colors">
+                        {React.cloneElement(benefit.icon, { className: "w-6 h-6" })}
+                      </div>
+                      <div className="flex-1 space-y-3">
+                        <div className="flex items-center gap-2">
+                          <h4 className="font-semibold text-lg">{benefit.title}</h4>
+                          <Badge variant="default" className="bg-green-100 text-green-800 hover:bg-green-100">
+                            <Check className="w-3 h-3 mr-1" />
+                            Available
+                          </Badge>
+                        </div>
+                        <p className="text-muted-foreground text-sm leading-relaxed">
+                          {benefit.employee.text}
+                        </p>
+                        <Badge variant="outline" className="text-green-700 border-green-200 bg-green-50">
                           <Check className="w-3 h-3 mr-1" />
-                          Available
+                          {benefit.employee.savings}
                         </Badge>
                       </div>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
-                        {benefit.employee.text}
-                      </p>
-                      <Badge variant="outline" className="text-green-700 border-green-200 bg-green-50">
-                        {benefit.employee.savings}
-                      </Badge>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            {/* General Public Column */}
+            <div className="space-y-6">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold text-red-600 mb-2">General Public</h3>
+                <p className="text-muted-foreground">Standard offerings & support</p>
+              </div>
+              
+              {benefits.map((benefit, index) => (
+                <Card 
+                  key={`public-${index}`}
+                  className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-red-200 bg-red-50/50 opacity-90"
+                >
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="p-3 rounded-xl bg-red-100 text-red-600 group-hover:bg-red-600 group-hover:text-white transition-colors">
+                        {React.cloneElement(benefit.icon, { className: "w-6 h-6" })}
+                      </div>
+                      <div className="flex-1 space-y-3">
+                        <div className="flex items-center gap-2">
+                          <h4 className="font-semibold text-lg">{benefit.title}</h4>
+                          <Badge variant="destructive" className="bg-red-100 text-red-800 hover:bg-red-100">
+                            <X className="w-3 h-3 mr-1" />
+                            Limited
+                          </Badge>
+                        </div>
+                        <p className="text-muted-foreground text-sm leading-relaxed">
+                          {benefit.public.text}
+                        </p>
+                        <Badge variant="outline" className="text-red-700 border-red-200 bg-red-50">
+                          <X className="w-3 h-3 mr-1" />
+                          {benefit.public.savings}
+                        </Badge>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
 
           {/* CTA Section */}
