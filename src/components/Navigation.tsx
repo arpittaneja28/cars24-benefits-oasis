@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import LoginModal from './LoginModal';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,7 +62,7 @@ const Navigation = () => {
               ))}
               <Button 
                 className="cars24-button"
-                onClick={() => handleLinkClick('#hero')}
+                onClick={() => setIsLoginModalOpen(true)}
               >
                 Get Started
               </Button>
@@ -101,7 +103,7 @@ const Navigation = () => {
             <div className="mt-8">
               <Button 
                 className="w-full"
-                onClick={() => handleLinkClick('#hero')}
+                onClick={() => setIsLoginModalOpen(true)}
               >
                 Get Started
               </Button>
@@ -109,6 +111,11 @@ const Navigation = () => {
           </div>
         </div>
       </div>
+      
+      <LoginModal 
+        isOpen={isLoginModalOpen} 
+        onClose={() => setIsLoginModalOpen(false)} 
+      />
     </>
   );
 };
