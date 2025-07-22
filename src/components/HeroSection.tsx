@@ -138,7 +138,7 @@ const HeroSection = () => {
           <Button 
             onClick={handleGetStarted}
             size="lg"
-            className="neuro-button px-8 py-4 text-lg group"
+            className="px-8 py-4 text-lg group"
           >
             {isLoggedIn ? 'Get Cashback' : 'See Your Benefits'}
             <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
