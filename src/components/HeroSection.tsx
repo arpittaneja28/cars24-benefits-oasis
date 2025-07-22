@@ -86,8 +86,8 @@ const HeroSection = () => {
         featuresSection.scrollIntoView({ behavior: 'smooth' });
       }
     } else {
-      // For non-logged-in users, redirect to login
-      navigate('/login');
+      // For non-logged-in users, redirect to comparison page
+      navigate('/comparison');
     }
   };
 
