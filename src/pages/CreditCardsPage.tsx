@@ -224,28 +224,47 @@ const CreditCardsPage = () => {
   ];
 
   const handleAddToComparison = (card: CreditCard) => {
-    if (selectedCards.length < 3 && !selectedCards.find(c => c.name === card.name)) {
+    console.log('handleAddToComparison called', { card: card.name, currentSelection: selectedCards.length });
+    
+    // Check if card is already selected
+    const isAlreadySelected = selectedCards.find(c => c.name === card.name);
+    
+    if (isAlreadySelected) {
+      // Remove card if already selected
+      console.log('Removing card:', card.name);
+      handleRemoveFromComparison(card.name);
+      return;
+    }
+    
+    // Add card if not selected and under limit
+    if (selectedCards.length < 3) {
       const newSelectedCards = [...selectedCards, card];
+      console.log('Adding card, new selection:', newSelectedCards.map(c => c.name));
       setSelectedCards(newSelectedCards);
       
       // Open sidebar when 2 or more cards are selected
       if (newSelectedCards.length >= 2) {
+        console.log('Opening sidebar - 2+ cards selected');
         setIsSidebarOpen(true);
       }
     }
   };
 
   const handleRemoveFromComparison = (cardName: string) => {
+    console.log('handleRemoveFromComparison called', { cardName, currentSelection: selectedCards.length });
     const newSelectedCards = selectedCards.filter(card => card.name !== cardName);
+    console.log('After removal:', newSelectedCards.map(c => c.name));
     setSelectedCards(newSelectedCards);
     
     // Close sidebar if less than 2 cards remain
     if (newSelectedCards.length < 2) {
+      console.log('Closing sidebar - less than 2 cards');
       setIsSidebarOpen(false);
     }
   };
 
   const openComparison = () => {
+    console.log('openComparison called', { selectedCards: selectedCards.length });
     if (selectedCards.length > 0) {
       setIsComparisonOpen(true);
       setIsSidebarOpen(false);
@@ -253,19 +272,35 @@ const CreditCardsPage = () => {
   };
 
   const handleAddMoreCards = () => {
+    console.log('handleAddMoreCards called');
     setIsSidebarOpen(false);
+  };
+
+  const handleViewSelection = () => {
+    console.log('handleViewSelection called', { selectedCards: selectedCards.length, isSidebarOpen });
+    setIsSidebarOpen(true);
   };
 
   // Close sidebar when clicking outside (scrim effect)
   useEffect(() => {
-    const handleClickOutside = () => {
+    const handleClickOutside = (event: MouseEvent) => {
+      // Don't close if clicking on card buttons or sidebar content
+      const target = event.target as HTMLElement;
+      if (target.closest('.sidebar-content') || target.closest('[data-card-button]')) {
+        return;
+      }
+      
       if (isSidebarOpen) {
+        console.log('Closing sidebar due to outside click');
         setIsSidebarOpen(false);
       }
     };
 
     if (isSidebarOpen) {
-      document.addEventListener('click', handleClickOutside);
+      // Delay adding the listener to avoid immediate trigger
+      setTimeout(() => {
+        document.addEventListener('click', handleClickOutside);
+      }, 100);
     }
 
     return () => {
@@ -384,11 +419,19 @@ const CreditCardsPage = () => {
                   </Button>
                   <Button 
                     variant="outline" 
-                    className="px-4 rounded-xl border-primary/20 hover:bg-primary/5"
-                    onClick={() => handleAddToComparison(card)}
-                    disabled={selectedCards.length >= 3 || selectedCards.find(c => c.name === card.name) !== undefined}
+                    className={`px-4 rounded-xl border-primary/20 hover:bg-primary/5 ${selectedCards.find(c => c.name === card.name) ? 'bg-primary text-primary-foreground' : ''}`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      console.log('Card button clicked:', card.name);
+                      handleAddToComparison(card);
+                    }}
+                    disabled={selectedCards.length >= 3 && !selectedCards.find(c => c.name === card.name)}
+                    data-card-button="true"
                   >
-                    {selectedCards.find(c => c.name === card.name) ? <Star className="w-4 h-4 fill-current" /> : <Plus className="w-4 h-4" />}
+                    {selectedCards.find(c => c.name === card.name) ? 
+                      <Star className="w-4 h-4 fill-current" /> : 
+                      <Plus className="w-4 h-4" />
+                    }
                   </Button>
                 </div>
               </div>
@@ -407,7 +450,7 @@ const CreditCardsPage = () => {
                 </p>
               </div>
               {selectedCards.length >= 2 && (
-                <Button onClick={() => setIsSidebarOpen(true)}>
+                <Button onClick={handleViewSelection}>
                   View Selection
                 </Button>
               )}
@@ -445,7 +488,9 @@ const CreditCardsPage = () => {
           />
           
           {/* Sidebar */}
-          <div className="fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-50 transform transition-transform duration-300">
+          <div className="fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-50 transform transition-transform duration-300 sidebar-content"
+               onClick={(e) => e.stopPropagation()}
+          >
             <div className="p-6 border-b">
               <div className="flex items-center justify-between">
                 <h3 className="text-lg font-semibold">Compare Cards</h3>
