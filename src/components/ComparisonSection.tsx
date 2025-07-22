@@ -113,10 +113,12 @@ const ComparisonSection = () => {
                         <p className="text-muted-foreground text-sm leading-relaxed">
                           {benefit.employee.text}
                         </p>
-                        <Badge variant="outline" className="text-green-700 border-green-200 bg-green-50">
-                          <Check className="w-3 h-3 mr-1" />
-                          {benefit.employee.savings}
-                        </Badge>
+                        <div className="w-full">
+                          <Badge variant="outline" className="text-green-700 border-green-200 bg-green-50 text-xs px-2 py-1 inline-block max-w-full">
+                            <Check className="w-3 h-3 mr-1 flex-shrink-0" />
+                            <span className="truncate">{benefit.employee.savings}</span>
+                          </Badge>
+                        </div>
                       </div>
                     </div>
                   </CardContent>
@@ -152,10 +154,12 @@ const ComparisonSection = () => {
                         <p className="text-muted-foreground text-sm leading-relaxed">
                           {benefit.public.text}
                         </p>
-                        <Badge variant="outline" className="text-red-700 border-red-200 bg-red-50">
-                          <X className="w-3 h-3 mr-1" />
-                          {benefit.public.savings}
-                        </Badge>
+                        <div className="w-full">
+                          <Badge variant="outline" className="text-red-700 border-red-200 bg-red-50 text-xs px-2 py-1 inline-block max-w-full">
+                            <X className="w-3 h-3 mr-1 flex-shrink-0" />
+                            <span className="truncate">{benefit.public.savings}</span>
+                          </Badge>
+                        </div>
                       </div>
                     </div>
                   </CardContent>
