@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { ArrowLeft, ShoppingBag, Star, Award, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ShoppingBag, Star, Award, ExternalLink, ArrowRight, TrendingUp, Gift } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { Slider } from '@/components/ui/slider';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,78 +9,163 @@ const OnlineShoppingPage = () => {
   const navigate = useNavigate();
   const [shoppingAmount, setShoppingAmount] = useState([5000]); // Default ₹5,000
 
-  const retailers = [
-    {
-      name: "Amazon",
-      logo: "🛒",
-      cashback: "5%",
-      maxCashback: "₹2,000",
-      specialOffer: "Extra 2% on Electronics",
-      category: "Everything",
-      rating: 4.8
-    },
+  const popularBrands = [
     {
       name: "Flipkart",
-      logo: "🛍️",
-      cashback: "4%",
-      maxCashback: "₹1,500",
-      specialOffer: "10% on Fashion",
-      category: "Electronics & Fashion",
-      rating: 4.7
+      logo: "🛒",
+      offer: "50-90% Off",
+      cashback: "Upto 7% Cashback",
+      bgColor: "from-blue-500 to-blue-600",
+      discount: "Sale Live Now"
     },
     {
-      name: "Myntra",
+      name: "AJIO",
       logo: "👗",
-      cashback: "8%",
-      maxCashback: "₹1,000",
-      specialOffer: "Up to 15% on Brands",
-      category: "Fashion & Lifestyle",
-      rating: 4.6
+      offer: "50-90% Off",
+      cashback: "Upto 8% Cashback",
+      bgColor: "from-pink-500 to-pink-600",
+      discount: "Sale Live Now"
     },
     {
-      name: "Nykaa",
+      name: "Cleevo",
       logo: "💄",
-      cashback: "10%",
-      maxCashback: "₹800",
-      specialOffer: "20% on Beauty",
-      category: "Beauty & Personal Care",
-      rating: 4.5
+      offer: "Combo @ 299",
+      cashback: "Flat 30% Cashback",
+      bgColor: "from-green-500 to-green-600",
+      discount: "Buy 2 Get 3 Free"
     },
     {
-      name: "BigBasket",
-      logo: "🥕",
-      cashback: "3%",
-      maxCashback: "₹500",
-      specialOffer: "5% on Groceries",
-      category: "Groceries",
-      rating: 4.4
+      name: "HSBC",
+      logo: "💳",
+      offer: "25% Off Code",
+      cashback: "Flat ₹2000 Rewards",
+      bgColor: "from-red-500 to-red-600",
+      discount: "Upto 20% Off"
     },
     {
-      name: "Zomato",
-      logo: "🍕",
-      cashback: "15%",
-      maxCashback: "₹300",
-      specialOffer: "25% on First Order",
-      category: "Food Delivery",
-      rating: 4.3
+      name: "Truemeds",
+      logo: "💊",
+      offer: "25% Off Code",
+      cashback: "Upto ₹370 Cashback",
+      bgColor: "from-teal-500 to-teal-600",
+      discount: "50-90% Off"
     },
     {
-      name: "BookMyShow",
-      logo: "🎬",
-      cashback: "12%",
-      maxCashback: "₹200",
-      specialOffer: "₹100 off on Movies",
-      category: "Entertainment",
-      rating: 4.6
+      name: "DOT & KEY",
+      logo: "✨",
+      offer: "Upto 20% Off",
+      cashback: "Upto 15% Cashback",
+      bgColor: "from-purple-500 to-purple-600",
+      discount: "Upto 15% Off"
+    }
+  ];
+
+  const topDeals = [
+    {
+      brand: "Flipkart",
+      category: "Shirts",
+      discount: "Up to 85% Off",
+      cashback: "Flat 2.1% Cashback",
+      image: "👔",
+      bgColor: "from-blue-700 to-blue-800"
     },
     {
-      name: "MakeMyTrip",
-      logo: "✈️",
-      cashback: "6%",
-      maxCashback: "₹3,000",
-      specialOffer: "Extra 3% on Hotels",
-      category: "Travel",
-      rating: 4.5
+      brand: "Flipkart", 
+      category: "Footwear",
+      discount: "Up to 80% Off",
+      cashback: "Flat 2.1% Cashback",
+      image: "👟",
+      bgColor: "from-blue-700 to-blue-800"
+    },
+    {
+      brand: "Flipkart",
+      category: "Perfumes & Deodorants", 
+      discount: "Up to 80% Off",
+      cashback: "Flat 2.1% Cashback",
+      image: "🧴",
+      bgColor: "from-blue-700 to-blue-800"
+    },
+    {
+      brand: "Flipkart",
+      category: "Bags & Backpacks",
+      discount: "Up to 85% Off", 
+      cashback: "Flat 2.1% Cashback",
+      image: "🎒",
+      bgColor: "from-blue-700 to-blue-800"
+    }
+  ];
+
+  const beautyDeals = [
+    {
+      brand: "Nykaa",
+      category: "Nykaa Cosmetics",
+      discount: "Up to 50% Off",
+      cashback: "Up to 5% Cashback",
+      image: "💄",
+      bgColor: "from-pink-400 to-pink-500",
+      sale: "HOT PINK SALE"
+    },
+    {
+      brand: "Nykaa",
+      category: "Lakme India",
+      discount: "Flat 50% Off",
+      cashback: "Up to 5% Cashback", 
+      image: "🏷️",
+      bgColor: "from-pink-400 to-pink-500",
+      sale: "HOT PINK SALE"
+    },
+    {
+      brand: "Nykaa",
+      category: "L'Oreal Paris",
+      discount: "Up to 40% Off",
+      cashback: "Up to 5% Cashback",
+      image: "💋",
+      bgColor: "from-pink-400 to-pink-500",
+      sale: "HOT PINK SALE"
+    },
+    {
+      brand: "Nykaa", 
+      category: "Maybelline New York",
+      discount: "Up to 40% Off",
+      cashback: "Up to 5% Cashback",
+      image: "👁️",
+      bgColor: "from-pink-400 to-pink-500",
+      sale: "HOT PINK SALE"
+    }
+  ];
+
+  const travelDeals = [
+    {
+      brand: "Expedia",
+      category: "Hotel & Rental Bookings",
+      discount: "Up to 60% off",
+      cashback: "Up to 8% Cashback",
+      image: "🏨",
+      bgColor: "from-cyan-400 to-cyan-500"
+    },
+    {
+      brand: "Booking.com",
+      category: "All Bookings", 
+      discount: "Up to 15% off",
+      cashback: "Flat 4% Cashback",
+      image: "🧳",
+      bgColor: "from-blue-400 to-blue-500"
+    },
+    {
+      brand: "IndiGo",
+      category: "Hotel Bookings",
+      discount: "Up to 25% Off",
+      cashback: "Flat ₹1,500 Cashback",
+      image: "🏢",
+      bgColor: "from-indigo-400 to-indigo-500"
+    },
+    {
+      brand: "Qatar Airways",
+      category: "Trending Destinations",
+      discount: "Explore Flights",
+      cashback: "Flat 1% Cashback",
+      image: "✈️",
+      bgColor: "from-purple-400 to-purple-500"
     }
   ];
 
@@ -116,136 +202,219 @@ const OnlineShoppingPage = () => {
         </div>
       </div>
 
-      <div className="container mx-auto max-w-6xl px-6 py-12">
-        {/* Shopping Calculator */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 mb-12 border border-border">
-          <h2 className="text-2xl font-bold mb-6 text-center">Cashback Calculator</h2>
+      <div className="container mx-auto max-w-7xl px-6 py-8">
+        {/* Most Popular Brands */}
+        <div className="mb-12">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold text-foreground">Most Popular Brands</h2>
+            <Button variant="link" className="text-primary p-0">
+              View All <ArrowRight className="w-4 h-4 ml-1" />
+            </Button>
+          </div>
           
-          <div className="max-w-md mx-auto space-y-6">
-            <div>
-              <div className="flex justify-between mb-2">
-                <span className="text-muted-foreground">Shopping Amount:</span>
-                <span className="font-semibold">{formatAmount(shoppingAmount[0])}</span>
-              </div>
-              <Slider
-                value={shoppingAmount}
-                onValueChange={setShoppingAmount}
-                max={50000}
-                min={500}
-                step={500}
-                className="w-full"
-              />
-            </div>
-
-            <div className="grid grid-cols-3 gap-4 p-4 bg-primary/5 rounded-lg">
-              <div className="text-center">
-                <div className="text-lg font-bold text-primary">
-                  ₹{calculateCashback(shoppingAmount[0], "5%")}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+            {popularBrands.map((brand, index) => (
+              <div key={index} className="bg-card rounded-2xl border border-border overflow-hidden hover:shadow-lg transition-all duration-300 group">
+                <div className="relative">
+                  {/* Discount Badge */}
+                  <div className="absolute top-3 left-3 z-10">
+                    <Badge className="bg-red-500 text-white text-xs px-2 py-1 rounded-md">
+                      {brand.offer}
+                    </Badge>
+                  </div>
+                  
+                  {/* Brand Logo & Name */}
+                  <div className="p-6 text-center">
+                    <div className="text-4xl mb-3">{brand.logo}</div>
+                    <h3 className="text-lg font-bold text-foreground mb-1">{brand.name}</h3>
+                    <p className="text-sm text-muted-foreground mb-3">{brand.discount}</p>
+                  </div>
                 </div>
-                <div className="text-sm text-muted-foreground">Amazon (5%)</div>
-              </div>
-              <div className="text-center">
-                <div className="text-lg font-bold text-green-600">
-                  ₹{calculateCashback(shoppingAmount[0], "8%")}
+                
+                {/* Cashback Button */}
+                <div className="p-4 bg-primary text-white text-center">
+                  <Button className="w-full bg-primary hover:bg-primary/90 text-white font-semibold">
+                    {brand.cashback}
+                  </Button>
                 </div>
-                <div className="text-sm text-muted-foreground">Myntra (8%)</div>
               </div>
-              <div className="text-center">
-                <div className="text-lg font-bold text-orange-600">
-                  ₹{calculateCashback(shoppingAmount[0], "15%")}
-                </div>
-                <div className="text-sm text-muted-foreground">Zomato (15%)</div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-          <div className="text-center p-6 bg-white rounded-xl shadow-lg border border-border">
-            <div className="text-3xl font-bold text-primary mb-2">3,000+</div>
-            <div className="text-muted-foreground">Retailers</div>
+        {/* Flipkart - Top Deals */}
+        <div className="mb-12">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold text-foreground">Flipkart - Top Deals</h2>
+            <Button variant="link" className="text-primary p-0">
+              View All <ArrowRight className="w-4 h-4 ml-1" />
+            </Button>
           </div>
-          <div className="text-center p-6 bg-white rounded-xl shadow-lg border border-border">
-            <div className="text-3xl font-bold text-green-600 mb-2">80%</div>
-            <div className="text-muted-foreground">Max Cashback</div>
-          </div>
-          <div className="text-center p-6 bg-white rounded-xl shadow-lg border border-border">
-            <div className="text-3xl font-bold text-orange-600 mb-2">₹50K+</div>
-            <div className="text-muted-foreground">Avg Monthly Savings</div>
-          </div>
-          <div className="text-center p-6 bg-white rounded-xl shadow-lg border border-border">
-            <div className="text-3xl font-bold text-blue-600 mb-2">24/7</div>
-            <div className="text-muted-foreground">Support</div>
-          </div>
-        </div>
-
-        {/* Retailers Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {retailers.map((retailer, index) => (
-            <div 
-              key={index}
-              className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg border border-white/20 p-6 transition-all duration-300 hover:scale-105 hover:shadow-xl"
-            >
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="text-3xl">{retailer.logo}</div>
-                  <div>
-                    <h3 className="text-lg font-bold text-foreground">{retailer.name}</h3>
-                    <div className="flex items-center gap-1">
-                      <Star className="w-4 h-4 text-yellow-500 fill-current" />
-                      <span className="text-sm text-muted-foreground">{retailer.rating}</span>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {topDeals.map((deal, index) => (
+              <div key={index} className={`relative rounded-2xl overflow-hidden bg-gradient-to-br ${deal.bgColor} text-white group hover:scale-105 transition-all duration-300`}>
+                <div className="absolute top-3 left-3">
+                  <div className="bg-white text-primary px-2 py-1 rounded text-xs font-bold">
+                    {deal.brand} 📱
+                  </div>
+                </div>
+                
+                <div className="p-6 h-64 flex flex-col justify-between">
+                  <div className="text-center">
+                    <div className="text-5xl mb-4">{deal.image}</div>
+                    <h3 className="text-xl font-bold mb-2">{deal.discount}</h3>
+                    <p className="text-sm opacity-90">On {deal.category}</p>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <div className="bg-primary px-3 py-2 rounded-lg text-center">
+                      <span className="text-sm font-bold">{deal.cashback}</span>
                     </div>
+                    <Button className="w-full bg-white text-primary hover:bg-white/90 font-semibold">
+                      Grab Deal
+                    </Button>
                   </div>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
 
-                <div className="p-3 bg-green-50 rounded-lg border border-green-200">
-                  <div className="text-xl font-bold text-green-800">{retailer.cashback}</div>
-                  <div className="text-sm text-green-600">Cashback</div>
-                  <div className="text-xs text-green-600">Max: {retailer.maxCashback}</div>
-                </div>
-
-                <div className="p-3 bg-primary/5 rounded-lg border border-primary/20">
-                  <div className="flex items-center gap-2 mb-1">
-                    <Award className="w-4 h-4 text-primary" />
-                    <span className="font-semibold text-primary text-sm">Special Offer</span>
+        {/* Nykaa - Top Deals */}
+        <div className="mb-12">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold text-foreground">Nykaa - Top Deals</h2>
+            <Button variant="link" className="text-primary p-0">
+              View All <ArrowRight className="w-4 h-4 ml-1" />
+            </Button>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {beautyDeals.map((deal, index) => (
+              <div key={index} className={`relative rounded-2xl overflow-hidden bg-gradient-to-br ${deal.bgColor} text-white group hover:scale-105 transition-all duration-300`}>
+                <div className="absolute top-3 left-3">
+                  <div className="bg-white text-pink-600 px-2 py-1 rounded text-xs font-bold">
+                    NYKAA
                   </div>
-                  <p className="text-xs text-foreground">{retailer.specialOffer}</p>
                 </div>
-
-                <div>
-                  <div className="text-sm text-muted-foreground mb-2">Category:</div>
-                  <div className="text-sm font-medium">{retailer.category}</div>
+                
+                {/* Sale Badge */}
+                <div className="absolute top-3 right-3">
+                  <div className="bg-pink-600 text-white px-3 py-1 rounded-full text-xs font-bold transform -rotate-12">
+                    {deal.sale}
+                  </div>
                 </div>
+                
+                <div className="p-6 h-64 flex flex-col justify-between">
+                  <div className="text-center">
+                    <div className="text-5xl mb-4">{deal.image}</div>
+                    <h3 className="text-lg font-bold mb-2">{deal.category}</h3>
+                    <p className="text-lg font-semibold">{deal.discount}</p>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <div className="bg-primary px-3 py-2 rounded-lg text-center">
+                      <span className="text-sm font-bold">{deal.cashback}</span>
+                    </div>
+                    <Button className="w-full bg-white text-pink-600 hover:bg-white/90 font-semibold">
+                      Grab Deal
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
 
-                <div className="flex gap-2">
-                  <Button 
-                    className="flex-1 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white font-semibold py-2 px-4 rounded-lg shadow-lg hover:shadow-xl hover:shadow-primary/25 transition-all duration-300 hover:scale-105 text-sm"
-                  >
-                    <ExternalLink className="w-4 h-4 mr-1" />
-                    Shop Now
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    className="px-3 rounded-lg border-primary/20 hover:bg-primary/5"
-                  >
-                    Deals
+        {/* Travel - Up to 6% Cashback */}
+        <div className="mb-12">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold text-foreground">Travel - Up to 6% Cashback</h2>
+            <Button variant="link" className="text-primary p-0">
+              View All <ArrowRight className="w-4 h-4 ml-1" />
+            </Button>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {travelDeals.map((deal, index) => (
+              <div key={index} className={`relative rounded-2xl overflow-hidden bg-gradient-to-br ${deal.bgColor} text-white group hover:scale-105 transition-all duration-300`}>
+                <div className="absolute top-3 left-3">
+                  <div className="bg-white text-blue-600 px-2 py-1 rounded text-xs font-bold flex items-center">
+                    {deal.brand === "Expedia" && "⭐ Expedia"}
+                    {deal.brand === "Booking.com" && "booking.com"}
+                    {deal.brand === "IndiGo" && "IndiGo ✈️"}
+                    {deal.brand === "Qatar Airways" && "QATAR ✈️"}
+                  </div>
+                </div>
+                
+                <div className="p-6 h-64 flex flex-col justify-between">
+                  <div className="text-center">
+                    <div className="text-5xl mb-4">{deal.image}</div>
+                    <h3 className="text-lg font-bold mb-2">{deal.discount}</h3>
+                    <p className="text-sm opacity-90">{deal.category}</p>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <div className="bg-primary px-3 py-2 rounded-lg text-center">
+                      <span className="text-sm font-bold">{deal.cashback}</span>
+                    </div>
+                    <Button className="w-full bg-white text-blue-600 hover:bg-white/90 font-semibold">
+                      Grab Deal
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Electronics Section Start */}
+        <div className="mb-12">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold text-foreground">Electronics - Up to 15% Cashback</h2>
+            <Button variant="link" className="text-primary p-0">
+              View All <ArrowRight className="w-4 h-4 ml-1" />
+            </Button>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {/* Electronics deals would go here - showing placeholder structure */}
+            <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-blue-600 to-blue-700 text-white group hover:scale-105 transition-all duration-300">
+              <div className="absolute top-3 left-3">
+                <div className="bg-white text-blue-600 px-2 py-1 rounded text-xs font-bold">
+                  BEELINE
+                </div>
+              </div>
+              
+              <div className="p-6 h-64 flex flex-col justify-between">
+                <div className="text-center">
+                  <div className="text-5xl mb-4">💻</div>
+                  <h3 className="text-lg font-bold mb-2">Electronics</h3>
+                  <p className="text-sm opacity-90">Latest Gadgets</p>
+                </div>
+                
+                <div className="space-y-3">
+                  <div className="bg-primary px-3 py-2 rounded-lg text-center">
+                    <span className="text-sm font-bold">Up to 15% Cashback</span>
+                  </div>
+                  <Button className="w-full bg-white text-blue-600 hover:bg-white/90 font-semibold">
+                    Grab Deal
                   </Button>
                 </div>
               </div>
             </div>
-          ))}
+          </div>
         </div>
 
         {/* View More CTA */}
-        <div className="text-center mt-12">
+        <div className="text-center mt-16">
           <Button 
-            variant="outline"
             size="lg"
-            className="border-primary/20 hover:bg-primary/5 text-primary"
+            className="bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white px-8 py-4"
           >
-            View All 3,000+ Retailers
+            <Gift className="w-5 h-5 mr-2" />
+            Explore All Deals & Offers
           </Button>
         </div>
       </div>
