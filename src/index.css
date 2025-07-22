@@ -8,217 +8,135 @@
 
 @layer base {
   :root {
-    /* CARS24 Light Theme - Professional & Clean */
-    --background: 210 17% 98%;  /* Light gray background #f5f7fa */
-    --foreground: 0 0% 10%;     /* Dark text #1a1a1a */
+    /* CARS24 Brand Colors */
+    --background: 0 0% 100%;        /* Pure white background */
+    --foreground: 0 0% 10%;         /* Dark text #1a1a1a */
 
-    --card: 0 0% 100%;          /* Pure white cards */
+    --card: 0 0% 100%;              /* Pure white cards */
     --card-foreground: 0 0% 10%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 10%;
 
-    /* CARS24 Brand Colors - Sky Blue Theme */
-    --primary: 215 100% 15%;     /* Sky-950 #0c4a6e */
+    /* CARS24 Brand Colors */
+    --primary: 200 100% 19%;        /* CARS24 Blue #003F61 */
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 215 100% 12%; /* Darker sky-950 for hover */
+    --primary-hover: 200 100% 15%;  /* Darker blue for hover */
 
-    --secondary: 215 100% 26%;   /* CARS24 Blue #003087 */
+    --secondary: 149 39% 35%;       /* CARS24 Green #3B7B5A */
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 17% 96%;        /* Light muted background */
-    --muted-foreground: 0 0% 45%; /* Muted text */
+    --muted: 210 17% 96%;           /* Light muted background */
+    --muted-foreground: 0 0% 45%;   /* Muted text */
 
-    --accent: 142 69% 58%;       /* Success Green #4caf50 */
+    --accent: 142 69% 58%;          /* Success Green #4caf50 */
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 84% 60%;       /* Red for errors */
     --destructive-foreground: 0 0% 98%;
 
-    --border: 214 13% 88%;       /* Light border */
-    --input: 214 13% 88%;
-    --ring: 215 100% 15%;        /* Sky-950 focus ring */
+    --border: 214 13% 90%;          /* Light border */
+    --input: 214 13% 90%;
+    --ring: 200 100% 19%;           /* CARS24 Blue focus ring */
 
-    /* Clean Design Elements */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.08);
+    /* Glassmorphism & Luxury Effects */
+    --glass-bg: rgba(255, 255, 255, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.18);
+    --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    --shadow-neumorphic: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+    --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
 
-    /* Professional Transitions */
-    --transition-smooth: all 0.2s ease-in-out;
-    --transition-fast: all 0.15s ease-out;
-
-    --radius: 0.75rem;
-
-    /* Sidebar - Clean White Theme */
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 0 0% 10%;
-    --sidebar-primary: 25 100% 55%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 210 17% 96%;
-    --sidebar-accent-foreground: 0 0% 10%;
-    --sidebar-border: 214 13% 88%;
-    --sidebar-ring: 25 100% 55%;
+    /* Smooth Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-scale: transform 0.2s ease-out;
   }
 
+  /* Dark mode variants */
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground font-inter antialiased;
-    background-color: hsl(var(--background));
-    min-height: 100vh;
-  }
-
-  html {
-    scroll-behavior: smooth;
+    --primary: 200 100% 25%;
+    --secondary: 149 39% 45%;
   }
 }
 
 @layer components {
-  /* CARS24 Clean Card Component */
-  .cars24-card {
-    background: hsl(var(--card));
-    border: 1px solid hsl(var(--border));
-    box-shadow: var(--shadow-card);
-    @apply rounded-xl;
+  /* Glassmorphic Card Styles */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     transition: var(--transition-smooth);
   }
 
-  .cars24-card:hover {
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-2px);
+  .glass-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.5);
   }
 
-  /* CARS24 Clean Button */
-  .cars24-button {
-    background: hsl(var(--primary));
-    color: hsl(var(--primary-foreground));
-    border: none;
-    @apply rounded-lg font-semibold px-6 py-3 text-sm;
-    transition: var(--transition-fast);
-  }
-
-  .cars24-button:hover {
-    background: hsl(var(--primary-hover));
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
-  }
-
-  .cars24-button-secondary {
-    background: hsl(var(--secondary));
-    color: hsl(var(--secondary-foreground));
-  }
-
-  .cars24-button-secondary:hover {
-    background: hsl(215 100% 22%);
-  }
-
-  /* Scroll Reveal Animation - Updated for light theme */
-  .scroll-reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease-out;
-  }
-
-  .scroll-reveal.revealed {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Clean Navigation */
-  .nav-clean {
-    background: hsl(var(--card));
-    border-bottom: 1px solid hsl(var(--border));
-    box-shadow: var(--shadow-sm);
-  }
-
-  /* Clean Testimonial Card */
-  .testimonial-card {
-    background: hsl(var(--card));
-    border: 1px solid hsl(var(--border));
-    box-shadow: var(--shadow-md);
-    @apply rounded-xl p-6;
+  /* Neumorphic Button Styles */
+  .neumorphic-btn {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 5px 5px 10px #d1d9e6, -5px -5px 10px #ffffff;
     transition: var(--transition-smooth);
   }
 
-  .testimonial-card:hover {
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-2px);
+  .neumorphic-btn:hover {
+    box-shadow: inset 5px 5px 10px #d1d9e6, inset -5px -5px 10px #ffffff;
+    transform: scale(0.98);
   }
 
-  /* Clean Feature Card */
-  .feature-card {
-    @apply cars24-card p-6;
+  /* Interactive Icon Animations */
+  .icon-hover {
     transition: var(--transition-smooth);
   }
 
-  .feature-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-xl);
+  .icon-hover:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 8px rgba(59, 123, 90, 0.6));
   }
 
-  /* Service Grid Icons */
-  .service-icon {
-    @apply w-12 h-12 rounded-lg flex items-center justify-center mb-4;
-    background: hsl(var(--primary) / 0.1);
-    color: hsl(var(--primary));
+  /* Parallax Card Effect */
+  .parallax-card {
+    transition: var(--transition-smooth);
+    transform-style: preserve-3d;
   }
 
-  /* Clean Input Style */
-  .cars24-input {
-    background: hsl(var(--card));
-    border: 1px solid hsl(var(--border));
-    @apply rounded-lg px-4 py-3 text-foreground;
-    transition: var(--transition-fast);
+  .parallax-card:hover {
+    transform: perspective(1000px) rotateX(2deg) rotateY(2deg) translateZ(20px);
   }
 
-  .cars24-input:focus {
-    border-color: hsl(var(--primary));
-    box-shadow: 0 0 0 2px hsl(var(--ring) / 0.2);
-    outline: none;
+  /* Gradient Text Effects */
+  .gradient-text {
+    background: linear-gradient(135deg, #003F61, #3B7B5A);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
+
+  /* Smooth Scale Animation */
+  .scale-on-hover {
+    transition: transform 0.2s ease-out;
+  }
+
+  .scale-on-hover:hover {
+    transform: scale(1.05);
+  }
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-feature-settings: "rlig" 1, "calt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
