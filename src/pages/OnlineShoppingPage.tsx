@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ArrowLeft, ShoppingBag, Star, Award, ExternalLink, ArrowRight, TrendingUp, Gift } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ArrowLeft, ShoppingBag, Star, Award, ExternalLink, ArrowRight, TrendingUp, Gift, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Slider } from '@/components/ui/slider';
@@ -8,6 +8,86 @@ import { useNavigate } from 'react-router-dom';
 const OnlineShoppingPage = () => {
   const navigate = useNavigate();
   const [shoppingAmount, setShoppingAmount] = useState([5000]); // Default ₹5,000
+  const [timeLeft, setTimeLeft] = useState({ hours: 18, minutes: 23, seconds: 34 });
+
+  // Countdown timer effect
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev.seconds > 0) {
+          return { ...prev, seconds: prev.seconds - 1 };
+        } else if (prev.minutes > 0) {
+          return { ...prev, minutes: prev.minutes - 1, seconds: 59 };
+        } else if (prev.hours > 0) {
+          return { ...prev, hours: prev.hours - 1, minutes: 59, seconds: 59 };
+        }
+        return prev;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const topCategories = [
+    { name: "Credit Cards", icon: "💳", color: "from-blue-500 to-purple-600" },
+    { name: "Biggest Sales", icon: "🔥", color: "from-red-500 to-pink-600", badge: "HOT" },
+    { name: "Loans", icon: "🏦", color: "from-green-500 to-teal-600" },
+    { name: "Food & Grocery", icon: "🛒", color: "from-orange-500 to-yellow-600" },
+    { name: "Home & Kitchen", icon: "🏠", color: "from-purple-500 to-indigo-600" },
+    { name: "Pharmacy", icon: "💊", color: "from-cyan-500 to-blue-600" },
+    { name: "Mobiles", icon: "📱", color: "from-pink-500 to-rose-600" },
+    { name: "Beauty & Grooming", icon: "💄", color: "from-violet-500 to-purple-600" },
+    { name: "Fashion", icon: "👕", color: "from-indigo-500 to-blue-600" },
+    { name: "Electronics", icon: "📺", color: "from-gray-600 to-gray-800" }
+  ];
+
+  const flashDeals = [
+    {
+      title: "8X Johnnie Walker Blue Blended Water 750ml",
+      originalPrice: "₹3,000",
+      salePrice: "₹281",
+      discount: "91% off",
+      cashback: "Flat 70% Cashback",
+      image: "🥃",
+      bgColor: "from-amber-100 to-yellow-100"
+    },
+    {
+      title: "Up to 70% Off On All Sportswear",
+      originalPrice: "",
+      salePrice: "",
+      discount: "70% off",
+      cashback: "Flat 70% Cashback",
+      image: "👕",
+      bgColor: "from-blue-100 to-indigo-100"
+    },
+    {
+      title: "All in one Times Prime Subscription Plan for Free!",
+      originalPrice: "₹1,299",
+      salePrice: "Free",
+      discount: "100% off",
+      cashback: "",
+      image: "📺",
+      bgColor: "from-purple-100 to-violet-100"
+    },
+    {
+      title: "Book Free Hotels Anywhere in India",
+      originalPrice: "₹1,000",
+      salePrice: "₹1,500 Cashback",
+      discount: "",
+      cashback: "₹1,500 Cashback",
+      image: "🏨",
+      bgColor: "from-cyan-100 to-blue-100"
+    },
+    {
+      title: "Flat ₹1,500 Cashback On Kickstart",
+      originalPrice: "",
+      salePrice: "",
+      discount: "",
+      cashback: "Flat ₹1,500 Cashback",
+      image: "🏍️",
+      bgColor: "from-green-100 to-emerald-100"
+    }
+  ];
 
   const popularBrands = [
     {
@@ -203,6 +283,86 @@ const OnlineShoppingPage = () => {
       </div>
 
       <div className="container mx-auto max-w-7xl px-6 py-8">
+        {/* Top Categories */}
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold text-foreground mb-6">Top Categories</h2>
+          <div className="grid grid-cols-5 md:grid-cols-10 gap-4">
+            {topCategories.map((category, index) => (
+              <div key={index} className="text-center group cursor-pointer">
+                <div className={`relative w-16 h-16 mx-auto mb-2 rounded-full bg-gradient-to-br ${category.color} flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-all duration-300`}>
+                  <span className="text-2xl">{category.icon}</span>
+                  {category.badge && (
+                    <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-1 rounded-full">
+                      {category.badge}
+                    </div>
+                  )}
+                </div>
+                <p className="text-xs text-muted-foreground font-medium">{category.name}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Flash Deals */}
+        <div className="mb-12">
+          <div className="bg-gradient-to-r from-slate-100 to-slate-200 rounded-2xl p-8 relative overflow-hidden">
+            {/* Background Pattern */}
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-10 right-10 w-32 h-32 bg-white rounded-full"></div>
+              <div className="absolute bottom-10 left-10 w-24 h-24 bg-white rounded-full"></div>
+            </div>
+            
+            <div className="relative z-10">
+              <div className="text-center mb-6">
+                <h2 className="text-4xl font-bold text-gray-800 mb-2">FLASH DEAL</h2>
+                <div className="flex items-center justify-center gap-2 text-gray-600">
+                  <Clock className="w-4 h-4" />
+                  <span className="text-sm">Ends in {timeLeft.hours.toString().padStart(2, '0')}:{timeLeft.minutes.toString().padStart(2, '0')}:{timeLeft.seconds.toString().padStart(2, '0')}</span>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                {flashDeals.map((deal, index) => (
+                  <div key={index} className={`bg-gradient-to-br ${deal.bgColor} rounded-xl p-4 border border-white/50 hover:scale-105 transition-all duration-300 group`}>
+                    <div className="text-center mb-3">
+                      <div className="text-4xl mb-2">{deal.image}</div>
+                      <h3 className="text-sm font-semibold text-gray-800 leading-tight mb-2 min-h-[2.5rem]">
+                        {deal.title}
+                      </h3>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      {deal.originalPrice && (
+                        <div className="text-center">
+                          <span className="text-lg font-bold text-gray-800">{deal.salePrice}</span>
+                          {deal.originalPrice && (
+                            <span className="text-sm text-gray-500 line-through ml-2">{deal.originalPrice}</span>
+                          )}
+                        </div>
+                      )}
+                      
+                      {deal.discount && (
+                        <div className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full text-center">
+                          {deal.discount}
+                        </div>
+                      )}
+                      
+                      {deal.cashback && (
+                        <div className="bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-full text-center">
+                          {deal.cashback}
+                        </div>
+                      )}
+                      
+                      <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white text-xs py-2">
+                        Grab Deal
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
         {/* Most Popular Brands */}
         <div className="mb-12">
           <div className="flex items-center justify-between mb-6">
