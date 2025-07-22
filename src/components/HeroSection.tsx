@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Star, Wallet, Clock, Calendar, CreditCard, ShoppingBag, Plane, TrendingUp, CheckCircle, Clock3 } from 'lucide-react';
+import { ArrowRight, Star, Wallet, Clock, Calendar, CreditCard, ShoppingBag, Plane, TrendingUp, CheckCircle, Clock3, LogOut, ToggleLeft, ToggleRight } from 'lucide-react';
+import { useAuth } from '@/context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import { Line, Doughnut } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -27,6 +29,8 @@ ChartJS.register(
 
 const HeroSection = () => {
   const heroRef = useRef<HTMLElement>(null);
+  const { isLoggedIn, userEmail, logout, toggleAuth } = useAuth();
+  const navigate = useNavigate();
   const [animatedValues, setAnimatedValues] = useState({
     total: 0,
     pending: 0,
@@ -75,9 +79,15 @@ const HeroSection = () => {
   }, []);
 
   const handleGetStarted = () => {
-    const featuresSection = document.querySelector('#features');
-    if (featuresSection) {
-      featuresSection.scrollIntoView({ behavior: 'smooth' });
+    if (isLoggedIn) {
+      // For logged-in users, scroll to features (Get Cashback action)
+      const featuresSection = document.querySelector('#features');
+      if (featuresSection) {
+        featuresSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // For non-logged-in users, redirect to login
+      navigate('/login');
     }
   };
 
@@ -98,7 +108,7 @@ const HeroSection = () => {
         <div className="scroll-reveal mb-6 mt-20">
           <div className="inline-flex items-center bg-card border border-border rounded-full px-4 py-2 text-sm text-muted-foreground shadow-sm">
             <Star className="w-4 h-4 mr-2 text-primary fill-current" />
-            Exclusive for CARS24 Employees
+            {isLoggedIn ? `Welcome back, ${userEmail?.split('@')[0]}!` : 'Exclusive for CARS24 Employees'}
           </div>
         </div>
 
@@ -126,7 +136,7 @@ const HeroSection = () => {
             size="lg"
             className="px-8 py-4 text-lg group"
           >
-            Get Started Today
+            {isLoggedIn ? 'Get Cashback' : 'Get Started Today'}
             <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Button>
           <Button 
@@ -137,6 +147,17 @@ const HeroSection = () => {
           >
             Learn More
           </Button>
+          {isLoggedIn && (
+            <Button 
+              variant="ghost" 
+              size="lg"
+              className="px-8 py-4 text-lg"
+              onClick={logout}
+            >
+              <LogOut className="mr-2 w-5 h-5" />
+              Logout
+            </Button>
+          )}
         </div>
 
         {/* Trust Indicators */}
@@ -367,6 +388,36 @@ const HeroSection = () => {
               </Button>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Prototype Demo Toggle - Fixed Position */}
+      <div className="fixed top-4 right-4 z-50">
+        <div className="bg-card border border-border rounded-lg p-4 shadow-lg">
+          <h4 className="text-sm font-medium mb-2">Prototype Demo</h4>
+          <Button
+            onClick={toggleAuth}
+            variant="outline"
+            size="sm"
+            className="flex items-center gap-2"
+          >
+            {isLoggedIn ? (
+              <>
+                <ToggleRight className="w-4 h-4 text-green-600" />
+                Logged In
+              </>
+            ) : (
+              <>
+                <ToggleLeft className="w-4 h-4 text-muted-foreground" />
+                Logged Out
+              </>
+            )}
+          </Button>
+          {isLoggedIn && (
+            <p className="text-xs text-muted-foreground mt-1">
+              {userEmail}
+            </p>
+          )}
         </div>
       </div>
 
