@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/context/AuthContext';
 import { Loader2, Mail, Phone, Shield } from 'lucide-react';
 
 interface LoginModalProps {
@@ -18,6 +19,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
   const [otp, setOtp] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const { login } = useAuth();
 
   const handleSendOTP = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -70,6 +72,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
     // Simulate API call
     setTimeout(() => {
       setIsLoading(false);
+      login(workEmail); // Actually log the user in
       toast({
         title: "Welcome to CARS24 Benefits!",
         description: "Your account has been verified successfully.",
@@ -99,6 +102,9 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
             <Shield className="w-5 h-5 text-primary" />
             Access CARS24 Benefits
           </DialogTitle>
+          <DialogDescription>
+            Sign in with your CARS24 work credentials to access exclusive benefits.
+          </DialogDescription>
         </DialogHeader>
         
         <div className="space-y-6">
