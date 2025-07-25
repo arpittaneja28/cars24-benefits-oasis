@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { CreditCard, ShoppingBag, User, GraduationCap, Home, Car, Shield as ShieldIcon } from 'lucide-react';
+import { CreditCard, ShoppingBag, User, GraduationCap, Home, Car, Shield as ShieldIcon, CheckCircle, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
 import { useNavigate } from 'react-router-dom';
@@ -161,13 +161,19 @@ const FeaturesSection = () => {
                     {feature.title}
                   </h3>
                   
-                  <ul className="space-y-3 mb-8">
+                  {/* Features List with proper bullets and structure */}
+                  <div className="space-y-4 mb-8 text-left">
                     {feature.features.map((item, idx) => (
-                      <li key={idx} className="text-muted-foreground font-medium">
-                        {item}
-                      </li>
+                      <div key={idx} className="flex items-start space-x-3 group/item">
+                        <div className="flex-shrink-0 mt-1">
+                          <CheckCircle className="w-5 h-5 text-primary group-hover/item:text-accent transition-colors duration-200" />
+                        </div>
+                        <span className="text-muted-foreground font-medium leading-relaxed group-hover/item:text-foreground transition-colors duration-200">
+                          {item}
+                        </span>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
 
                   {/* Neumorphism CTA Button */}
                   <Button 
