@@ -22,10 +22,8 @@ export default {
 				inter: ['Inter', 'sans-serif'],
 			},
 			colors: {
-				'cars24-blue': '#2E86AB',
-				'cars24-orange': '#FF6B35',
-				'cars24-legacy-blue': '#003F61',
-				'cars24-legacy-green': '#3B7B5A',
+				'cars24-blue': '#003F61',
+				'cars24-green': '#3B7B5A',
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',

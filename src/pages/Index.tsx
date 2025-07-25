@@ -11,8 +11,7 @@ import Footer from '@/components/Footer';
 
 const Index = () => {
   return (
-    <div className="min-h-screen cars24-background">
-      <div className="automotive-lines"></div>
+    <div className="min-h-screen bg-background">
       <Navigation />
       <HeroSection />
       <FeaturesSection />
