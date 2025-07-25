@@ -148,8 +148,8 @@ const FeaturesSection = () => {
                 {/* Background Gradient */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
-                {/* Icon */}
-                <div className="relative z-10 mb-6">
+                {/* Icon - Centered */}
+                <div className="relative z-10 mb-6 flex justify-center">
                   <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <feature.icon className="w-8 h-8 text-white" />
                   </div>
