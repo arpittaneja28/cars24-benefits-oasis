@@ -4,7 +4,7 @@ import { ArrowRight, Star, Wallet, Clock, Calendar, CreditCard, ShoppingBag, Pla
 import { useAuth } from '@/context/AuthContext';
 import { Line, Doughnut } from 'react-chartjs-2';
 import ComparisonSection from '@/components/ComparisonSection';
-import heroBackground from '@/assets/hero-background.jpg';
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -132,16 +132,161 @@ const HeroSection = () => {
     <section 
       id="hero" 
       ref={heroRef}
-      className="min-h-screen flex flex-col items-center justify-center relative px-6 overflow-hidden"
-      style={{
-        backgroundImage: `url(${heroBackground})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}
+      className="min-h-screen flex flex-col items-center justify-center relative px-6 overflow-hidden bg-background"
     >
-      {/* Overlay for text readability */}
-      <div className="absolute inset-0 bg-background/80 backdrop-blur-sm"></div>
+      {/* Geometric Background Pattern */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Diagonal Lines */}
+        <div className="absolute inset-0">
+          {Array.from({ length: 20 }).map((_, i) => (
+            <div
+              key={`line-${i}`}
+              className="absolute h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent"
+              style={{
+                width: '200%',
+                left: '-50%',
+                top: `${i * 8}%`,
+                transform: `rotate(${15 + i * 2}deg)`,
+                transformOrigin: 'center',
+              }}
+            />
+          ))}
+        </div>
+        
+        {/* Car Icons */}
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-10 opacity-30">
+            <svg width="48" height="32" viewBox="0 0 48 32" className="text-primary">
+              <path
+                d="M8 20h4v4H8v-4zm24 0h4v4h-4v-4zM4 16h40v8H4v-8zm6-4h28l-2-4H12l-2 4z"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <circle cx="12" cy="22" r="2" fill="none" stroke="currentColor" strokeWidth="1.5" />
+              <circle cx="36" cy="22" r="2" fill="none" stroke="currentColor" strokeWidth="1.5" />
+            </svg>
+          </div>
+          
+          <div className="absolute top-40 right-20 opacity-20">
+            <svg width="40" height="28" viewBox="0 0 40 28" className="text-secondary">
+              <path
+                d="M6 18h3v3H6v-3zm21 0h3v3h-3v-3zM3 14h34v7H3v-7zm5-3h24l-2-3H10l-2 3z"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <circle cx="10" cy="19.5" r="1.5" fill="none" stroke="currentColor" strokeWidth="1.5" />
+              <circle cx="30" cy="19.5" r="1.5" fill="none" stroke="currentColor" strokeWidth="1.5" />
+            </svg>
+          </div>
+          
+          <div className="absolute bottom-32 left-20 opacity-25">
+            <svg width="44" height="30" viewBox="0 0 44 30" className="text-primary">
+              <path
+                d="M7 19h3.5v3.5H7V19zm23 0h3.5v3.5H30V19zM4 15h36v7.5H4V15zm5.5-3.5h25l-2-3.5H11.5l-2 3.5z"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <circle cx="11" cy="20.5" r="1.8" fill="none" stroke="currentColor" strokeWidth="1.5" />
+              <circle cx="33" cy="20.5" r="1.8" fill="none" stroke="currentColor" strokeWidth="1.5" />
+            </svg>
+          </div>
+          
+          <div className="absolute top-60 left-1/3 opacity-15">
+            <svg width="36" height="24" viewBox="0 0 36 24" className="text-secondary">
+              <path
+                d="M5 16h3v3H5v-3zm18 0h3v3h-3v-3zM2 12h32v6H2v-6zm4.5-2.5h23l-1.5-3H8l-1.5 3z"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <circle cx="8.5" cy="17.5" r="1.5" fill="none" stroke="currentColor" strokeWidth="1.5" />
+              <circle cx="27.5" cy="17.5" r="1.5" fill="none" stroke="currentColor" strokeWidth="1.5" />
+            </svg>
+          </div>
+          
+          <div className="absolute bottom-20 right-10 opacity-20">
+            <svg width="42" height="28" viewBox="0 0 42 28" className="text-primary">
+              <path
+                d="M6.5 18h3.5v3.5H6.5V18zm22 0h3.5v3.5h-3.5V18zM3 14h36v7H3v-7zm5-3h26l-2-3.5H10l-2 3.5z"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <circle cx="10.5" cy="19.75" r="1.75" fill="none" stroke="currentColor" strokeWidth="1.5" />
+              <circle cx="31.5" cy="19.75" r="1.75" fill="none" stroke="currentColor" strokeWidth="1.5" />
+            </svg>
+          </div>
+        </div>
+        
+        {/* Hexagonal Shapes */}
+        <div className="absolute inset-0">
+          <div className="absolute top-32 right-32 opacity-25">
+            <svg width="24" height="28" viewBox="0 0 24 28" className="text-secondary">
+              <path
+                d="M12 2L20 7v10l-8 5-8-5V7l8-5z"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+              />
+            </svg>
+          </div>
+          
+          <div className="absolute bottom-40 left-32 opacity-20">
+            <svg width="20" height="24" viewBox="0 0 20 24" className="text-primary">
+              <path
+                d="M10 2L17 6v8l-7 4-7-4V6l7-4z"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+              />
+            </svg>
+          </div>
+          
+          <div className="absolute top-1/3 right-1/4 opacity-15">
+            <svg width="18" height="22" viewBox="0 0 18 22" className="text-secondary">
+              <path
+                d="M9 2L15 5.5v9L9 18l-6-3.5v-9L9 2z"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+              />
+            </svg>
+          </div>
+        </div>
+        
+        {/* Curved Lines */}
+        <div className="absolute inset-0">
+          <svg className="absolute top-0 left-0 w-full h-full opacity-10" viewBox="0 0 1200 800">
+            <path
+              d="M0 200 Q300 100 600 200 T1200 200"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              className="text-primary"
+            />
+            <path
+              d="M0 600 Q400 500 800 600 T1200 600"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              className="text-secondary"
+            />
+          </svg>
+        </div>
+      </div>
 
       <div className="relative z-10 text-center max-w-6xl mx-auto">
         {/* Badge */}
