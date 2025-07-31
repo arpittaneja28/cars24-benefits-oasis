@@ -134,157 +134,172 @@ const HeroSection = () => {
       ref={heroRef}
       className="min-h-screen flex flex-col items-center justify-center relative px-6 overflow-hidden bg-background"
     >
-      {/* Geometric Background Pattern */}
+      {/* 3D Isometric Background Pattern */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Diagonal Lines */}
+        {/* Multi-colored Diagonal Lines */}
         <div className="absolute inset-0">
-          {Array.from({ length: 20 }).map((_, i) => (
-            <div
-              key={`line-${i}`}
-              className="absolute h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent"
-              style={{
-                width: '200%',
-                left: '-50%',
-                top: `${i * 8}%`,
-                transform: `rotate(${15 + i * 2}deg)`,
-                transformOrigin: 'center',
-              }}
-            />
-          ))}
+          {Array.from({ length: 30 }).map((_, i) => {
+            const isBlue = i % 3 === 0;
+            const isOrange = i % 3 === 1;
+            const rotation = -45 + (i * 3);
+            return (
+              <div
+                key={`line-${i}`}
+                className="absolute opacity-20"
+                style={{
+                  width: '150%',
+                  height: '2px',
+                  left: '-25%',
+                  top: `${(i * 4)}%`,
+                  transform: `rotate(${rotation}deg)`,
+                  transformOrigin: 'center',
+                  background: isBlue 
+                    ? 'linear-gradient(90deg, transparent, #3b82f6, transparent)' 
+                    : isOrange 
+                    ? 'linear-gradient(90deg, transparent, #f97316, transparent)'
+                    : 'linear-gradient(90deg, transparent, #8b5cf6, transparent)',
+                }}
+              />
+            );
+          })}
         </div>
-        
-        {/* Car Icons */}
+
+        {/* 3D Isometric Cars */}
         <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 opacity-30">
-            <svg width="48" height="32" viewBox="0 0 48 32" className="text-primary">
-              <path
-                d="M8 20h4v4H8v-4zm24 0h4v4h-4v-4zM4 16h40v8H4v-8zm6-4h28l-2-4H12l-2 4z"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <circle cx="12" cy="22" r="2" fill="none" stroke="currentColor" strokeWidth="1.5" />
-              <circle cx="36" cy="22" r="2" fill="none" stroke="currentColor" strokeWidth="1.5" />
-            </svg>
+          {/* Car 1 - Top Left */}
+          <div 
+            className="absolute top-16 left-16 opacity-30"
+            style={{ transform: 'perspective(1000px) rotateX(60deg) rotateY(-30deg)' }}
+          >
+            <div className="relative w-24 h-16">
+              {/* Car Body */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg shadow-lg">
+                {/* Car Top */}
+                <div className="absolute top-2 left-3 right-3 h-6 bg-gradient-to-br from-blue-300 to-blue-500 rounded-sm"></div>
+                {/* Windshield */}
+                <div className="absolute top-1 left-4 right-4 h-3 bg-gradient-to-br from-blue-200/50 to-blue-400/50 rounded-sm"></div>
+                {/* Wheels */}
+                <div className="absolute bottom-1 left-2 w-4 h-4 bg-gray-800 rounded-full shadow-md"></div>
+                <div className="absolute bottom-1 right-2 w-4 h-4 bg-gray-800 rounded-full shadow-md"></div>
+                {/* Wheel Details */}
+                <div className="absolute bottom-2 left-3 w-2 h-2 bg-gray-400 rounded-full"></div>
+                <div className="absolute bottom-2 right-3 w-2 h-2 bg-gray-400 rounded-full"></div>
+              </div>
+            </div>
           </div>
-          
-          <div className="absolute top-40 right-20 opacity-20">
-            <svg width="40" height="28" viewBox="0 0 40 28" className="text-secondary">
-              <path
-                d="M6 18h3v3H6v-3zm21 0h3v3h-3v-3zM3 14h34v7H3v-7zm5-3h24l-2-3H10l-2 3z"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <circle cx="10" cy="19.5" r="1.5" fill="none" stroke="currentColor" strokeWidth="1.5" />
-              <circle cx="30" cy="19.5" r="1.5" fill="none" stroke="currentColor" strokeWidth="1.5" />
-            </svg>
+
+          {/* Car 2 - Top Right */}
+          <div 
+            className="absolute top-32 right-20 opacity-25"
+            style={{ transform: 'perspective(1000px) rotateX(60deg) rotateY(30deg)' }}
+          >
+            <div className="relative w-28 h-18">
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-400 to-orange-600 rounded-lg shadow-lg">
+                <div className="absolute top-2 left-4 right-4 h-7 bg-gradient-to-br from-orange-300 to-orange-500 rounded-sm"></div>
+                <div className="absolute top-1 left-5 right-5 h-4 bg-gradient-to-br from-orange-200/50 to-orange-400/50 rounded-sm"></div>
+                <div className="absolute bottom-1 left-2 w-5 h-5 bg-gray-800 rounded-full shadow-md"></div>
+                <div className="absolute bottom-1 right-2 w-5 h-5 bg-gray-800 rounded-full shadow-md"></div>
+                <div className="absolute bottom-2 left-3 w-3 h-3 bg-gray-400 rounded-full"></div>
+                <div className="absolute bottom-2 right-3 w-3 h-3 bg-gray-400 rounded-full"></div>
+              </div>
+            </div>
           </div>
-          
-          <div className="absolute bottom-32 left-20 opacity-25">
-            <svg width="44" height="30" viewBox="0 0 44 30" className="text-primary">
-              <path
-                d="M7 19h3.5v3.5H7V19zm23 0h3.5v3.5H30V19zM4 15h36v7.5H4V15zm5.5-3.5h25l-2-3.5H11.5l-2 3.5z"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <circle cx="11" cy="20.5" r="1.8" fill="none" stroke="currentColor" strokeWidth="1.5" />
-              <circle cx="33" cy="20.5" r="1.8" fill="none" stroke="currentColor" strokeWidth="1.5" />
-            </svg>
+
+          {/* Car 3 - Bottom Left */}
+          <div 
+            className="absolute bottom-32 left-24 opacity-35"
+            style={{ transform: 'perspective(1000px) rotateX(60deg) rotateY(-45deg)' }}
+          >
+            <div className="relative w-26 h-17">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg shadow-lg">
+                <div className="absolute top-2 left-3 right-3 h-6 bg-gradient-to-br from-purple-300 to-purple-500 rounded-sm"></div>
+                <div className="absolute top-1 left-4 right-4 h-3 bg-gradient-to-br from-purple-200/50 to-purple-400/50 rounded-sm"></div>
+                <div className="absolute bottom-1 left-2 w-4 h-4 bg-gray-800 rounded-full shadow-md"></div>
+                <div className="absolute bottom-1 right-2 w-4 h-4 bg-gray-800 rounded-full shadow-md"></div>
+                <div className="absolute bottom-2 left-3 w-2 h-2 bg-gray-400 rounded-full"></div>
+                <div className="absolute bottom-2 right-3 w-2 h-2 bg-gray-400 rounded-full"></div>
+              </div>
+            </div>
           </div>
-          
-          <div className="absolute top-60 left-1/3 opacity-15">
-            <svg width="36" height="24" viewBox="0 0 36 24" className="text-secondary">
-              <path
-                d="M5 16h3v3H5v-3zm18 0h3v3h-3v-3zM2 12h32v6H2v-6zm4.5-2.5h23l-1.5-3H8l-1.5 3z"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <circle cx="8.5" cy="17.5" r="1.5" fill="none" stroke="currentColor" strokeWidth="1.5" />
-              <circle cx="27.5" cy="17.5" r="1.5" fill="none" stroke="currentColor" strokeWidth="1.5" />
-            </svg>
+
+          {/* Car 4 - Bottom Right */}
+          <div 
+            className="absolute bottom-20 right-16 opacity-30"
+            style={{ transform: 'perspective(1000px) rotateX(60deg) rotateY(15deg)' }}
+          >
+            <div className="relative w-25 h-16">
+              <div className="absolute inset-0 bg-gradient-to-br from-green-400 to-green-600 rounded-lg shadow-lg">
+                <div className="absolute top-2 left-3 right-3 h-6 bg-gradient-to-br from-green-300 to-green-500 rounded-sm"></div>
+                <div className="absolute top-1 left-4 right-4 h-3 bg-gradient-to-br from-green-200/50 to-green-400/50 rounded-sm"></div>
+                <div className="absolute bottom-1 left-2 w-4 h-4 bg-gray-800 rounded-full shadow-md"></div>
+                <div className="absolute bottom-1 right-2 w-4 h-4 bg-gray-800 rounded-full shadow-md"></div>
+                <div className="absolute bottom-2 left-3 w-2 h-2 bg-gray-400 rounded-full"></div>
+                <div className="absolute bottom-2 right-3 w-2 h-2 bg-gray-400 rounded-full"></div>
+              </div>
+            </div>
           </div>
-          
-          <div className="absolute bottom-20 right-10 opacity-20">
-            <svg width="42" height="28" viewBox="0 0 42 28" className="text-primary">
-              <path
-                d="M6.5 18h3.5v3.5H6.5V18zm22 0h3.5v3.5h-3.5V18zM3 14h36v7H3v-7zm5-3h26l-2-3.5H10l-2 3.5z"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <circle cx="10.5" cy="19.75" r="1.75" fill="none" stroke="currentColor" strokeWidth="1.5" />
-              <circle cx="31.5" cy="19.75" r="1.75" fill="none" stroke="currentColor" strokeWidth="1.5" />
-            </svg>
-          </div>
-        </div>
-        
-        {/* Hexagonal Shapes */}
-        <div className="absolute inset-0">
-          <div className="absolute top-32 right-32 opacity-25">
-            <svg width="24" height="28" viewBox="0 0 24 28" className="text-secondary">
-              <path
-                d="M12 2L20 7v10l-8 5-8-5V7l8-5z"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-              />
-            </svg>
-          </div>
-          
-          <div className="absolute bottom-40 left-32 opacity-20">
-            <svg width="20" height="24" viewBox="0 0 20 24" className="text-primary">
-              <path
-                d="M10 2L17 6v8l-7 4-7-4V6l7-4z"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-              />
-            </svg>
-          </div>
-          
-          <div className="absolute top-1/3 right-1/4 opacity-15">
-            <svg width="18" height="22" viewBox="0 0 18 22" className="text-secondary">
-              <path
-                d="M9 2L15 5.5v9L9 18l-6-3.5v-9L9 2z"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-              />
-            </svg>
+
+          {/* Car 5 - Center */}
+          <div 
+            className="absolute top-1/2 left-1/3 opacity-20"
+            style={{ transform: 'perspective(1000px) rotateX(60deg) rotateY(-15deg)' }}
+          >
+            <div className="relative w-22 h-15">
+              <div className="absolute inset-0 bg-gradient-to-br from-pink-400 to-pink-600 rounded-lg shadow-lg">
+                <div className="absolute top-2 left-3 right-3 h-5 bg-gradient-to-br from-pink-300 to-pink-500 rounded-sm"></div>
+                <div className="absolute top-1 left-4 right-4 h-3 bg-gradient-to-br from-pink-200/50 to-pink-400/50 rounded-sm"></div>
+                <div className="absolute bottom-1 left-2 w-3 h-3 bg-gray-800 rounded-full shadow-md"></div>
+                <div className="absolute bottom-1 right-2 w-3 h-3 bg-gray-800 rounded-full shadow-md"></div>
+              </div>
+            </div>
           </div>
         </div>
-        
-        {/* Curved Lines */}
+
+        {/* 3D Hexagonal Shapes */}
         <div className="absolute inset-0">
-          <svg className="absolute top-0 left-0 w-full h-full opacity-10" viewBox="0 0 1200 800">
-            <path
-              d="M0 200 Q300 100 600 200 T1200 200"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              className="text-primary"
-            />
-            <path
-              d="M0 600 Q400 500 800 600 T1200 600"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              className="text-secondary"
-            />
-          </svg>
+          <div 
+            className="absolute top-40 right-32 opacity-20"
+            style={{ transform: 'perspective(1000px) rotateX(60deg) rotateY(-30deg)' }}
+          >
+            <div className="w-12 h-12 bg-gradient-to-br from-blue-300 to-blue-500 transform rotate-45 shadow-lg"></div>
+          </div>
+          
+          <div 
+            className="absolute bottom-40 left-40 opacity-25"
+            style={{ transform: 'perspective(1000px) rotateX(60deg) rotateY(45deg)' }}
+          >
+            <div className="w-10 h-10 bg-gradient-to-br from-orange-300 to-orange-500 transform rotate-45 shadow-lg"></div>
+          </div>
+          
+          <div 
+            className="absolute top-2/3 right-1/4 opacity-15"
+            style={{ transform: 'perspective(1000px) rotateX(60deg) rotateY(-60deg)' }}
+          >
+            <div className="w-8 h-8 bg-gradient-to-br from-purple-300 to-purple-500 transform rotate-45 shadow-lg"></div>
+          </div>
+        </div>
+
+        {/* Animated Floating Elements */}
+        <div className="absolute inset-0">
+          <div 
+            className="absolute top-20 right-1/3 opacity-10 animate-pulse"
+            style={{ 
+              animationDuration: '4s',
+              transform: 'perspective(1000px) rotateX(60deg) rotateZ(30deg)' 
+            }}
+          >
+            <div className="w-6 h-6 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-full shadow-lg"></div>
+          </div>
+          
+          <div 
+            className="absolute bottom-1/3 left-1/4 opacity-15 animate-bounce"
+            style={{ 
+              animationDuration: '3s',
+              transform: 'perspective(1000px) rotateX(60deg) rotateZ(-45deg)' 
+            }}
+          >
+            <div className="w-4 h-4 bg-gradient-to-br from-yellow-400 to-yellow-600 transform rotate-45 shadow-lg"></div>
+          </div>
         </div>
       </div>
 
